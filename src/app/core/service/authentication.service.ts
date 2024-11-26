@@ -48,6 +48,15 @@ export class AuthenticationService {
             return this.getLocalStorage(AppConstant.userSessionKey);
         }
     }
+
+    getToken(): string | undefined {
+        const token = localStorage.getItem('token');
+        if (token) {
+            return token;
+        } else {
+            return undefined;
+        }
+    }
 }
 export interface UserSession {
     accessToken?: string;

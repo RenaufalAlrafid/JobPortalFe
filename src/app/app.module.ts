@@ -20,6 +20,8 @@ import { HttpErrorInterceptor } from './core/interceptor/http-error.interceptor'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { AuthenticationModule } from '@project/authentication/authentication.module';
+import { LayoutProjectModule } from '@project/layout-project/layout-project.module';
 
 export const interceptorProviders = [
     {
@@ -41,6 +43,7 @@ export function createTranslateLoader(http: HttpClient) {
         AppRoutingModule,
         HttpClientModule,
         NgxSpinnerModule,
+        LayoutProjectModule,
         BrowserAnimationsModule,
         TranslateModule.forRoot({
             defaultLanguage: 'en',

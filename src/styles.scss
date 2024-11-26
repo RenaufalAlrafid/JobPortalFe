@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import "../node_modules/primeng/resources/primeng.min.css";
+// @import "../node_modules/primeng/resources/primeng.min.css";
 // @import "../node_modules/primeflex/primeflex.scss";
 @import "../node_modules/primeicons/primeicons.css";
 @import "../node_modules/prismjs/themes/prism-coy.css";
@@ -8,12 +8,13 @@
 @import "assets/sass/layout/_layout";
 @import "assets/sass/overrides/_overrides";
 @import "~bootstrap-icons/font/bootstrap-icons.css";
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
+//linov mulai dari sini
 * {
     scrollbar-width: thin !important;
     scrollbar-color: var(--surface-200) var(--surface-0) !important;
-    font-family: SF Pro Text;
+    // font-family: SF Pro Text;
 }
 
 .fa {
@@ -4151,4 +4152,29 @@ input::-webkit-inner-spin-button {
     &:hover .border-line {
         border-color: var(--light-gray) !important;
     }
+}
+
+body {
+    font-family: "Montserrat", serif !important;
+    margin: 0;
+    padding: 0;
+}
+html {
+    padding: 0;
+    margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    font-family: "Poppins", sans-serif !important;
 }

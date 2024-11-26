@@ -1,0 +1,42 @@
+<div class="grid min-w-screen max-w-screen min-h-screen max-h-screen  m-0 overflow-hidden bg-primary-300">
+    <div class="col-12 md:col-6 xl:col-5  p-5 lg:px-8 lg:py-5 ">
+        <div class="flex flex-column gap-2 bg-white px-5 flex-1 min-h-full border-round-3xl pt-4 w-field">
+            <div class="flex justify-content-between align-items-center lg:px-5 ">
+                <img src="assets/images/logo.png"
+                    alt="logo"
+                    class="w-4 md:w-4 lg:w-3">
+                <div class="flex flex-column align-items-end">
+                    <p class="text-primary-500 text-2xl font-bold text-end">Renaufal AI</p>
+                    <p class="text-primary-200 text-end">Batch 18</p>
+                </div>
+            </div>
+            <router-outlet></router-outlet>
+        </div>
+
+    </div>
+
+    <div class="hidden md:block md:col-6 xl:col-7 m-0 px-5 pt-3">
+        <div class=" min-h-full  pt-4 flex flex-column justify-content-center align-items-center">
+            <p-carousel [value]="carousalItems"
+                [numVisible]="1"
+                [numScroll]="1"
+                [circular]="true"
+                autoplayInterval="3000"
+                class="w-full flex align-items-center justify-content-center">
+                <ng-template let-item
+                    pTemplate="item">
+                    <div class="flex flex-column align-items-center justify-content-center min-h-full">
+                        <img src="assets/images/{{ item.image }}"
+                            alt="{{ item.span }}"
+                            class="w-8 lg:w-9 mb-3">
+
+                        <p class="text-sm lg:text-3xl text-wrap  font-bold text-center"
+                            [innerHTML]="item.span">
+                        </p>
+                    </div>
+                </ng-template>
+            </p-carousel>
+        </div>
+
+    </div>
+</div>

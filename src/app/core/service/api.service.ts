@@ -50,10 +50,7 @@ export class ApiService {
     }
     getHeaderUpload(): HttpHeaders {
         return this.header
-            .append(
-                'Authorization',
-                `Bearer ${this.authService.getSession()?.accessToken}`
-            )
+            .append('Authorization', `Bearer ${this.authService.getToken()}`)
             .append('enctype', 'multipart/form-data');
     }
     getDummyHeaders(str): HttpHeaders {

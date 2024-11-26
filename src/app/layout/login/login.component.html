@@ -1,33 +1,26 @@
 <div class="container">
-    <img
-        class="absolute z-2"
+    <img class="absolute z-2"
         style="top: 2.8rem; left: 2.8rem; width: 7rem"
-        src="assets/logo/BSS-logo.svg"
-    />
-    <img
-        class="absolute z-1 bg-login"
+        src="assets/logo/BSS-logo.svg" />
+    <img class="absolute z-1 bg-login"
         style="width: 100vw; height: 100vh"
-        src="assets/images/bg-login.svg"
-    />
+        src="assets/images/bg-login.svg" />
 
     <div class="card z-3 login-box">
         <form (ngSubmit)="showPassword ? handleSubmit() : checkUsername()">
-            <div class="p-fluid p-2" [formGroup]="formGroup">
+            <div class="p-fluid p-2"
+                [formGroup]="formGroup">
                 <p class="p-float-label mb-4 p-title text-center">Login</p>
                 <div class="field">
-                    <label
-                        for="_username"
+                    <label for="_username"
                         [ngClass]="{
                             'ng-dirty ng-invalid':
                                 (formGroup.get('username').touched ||
                                     formGroup.get('username').dirty) &&
                                 !formGroup.get('username').valid
-                        }"
-                        >Username/NIK</label
-                    >
+                        }">Username/NIK</label>
                     <div>
-                        <input
-                            pInputText
+                        <input pInputText
                             id="_username"
                             [ngClass]="{
                                 'ng-dirty ng-invalid':
@@ -39,28 +32,22 @@
                             type="text"
                             placeholder="Input Username/NIK"
                             class="login-input"
-                            [readonly]="showPassword || isLoading"
-                        />
-                        <app-error-field-helper
-                            [formControlKey]="formGroup.get('username')"
-                        >
+                            [readonly]="showPassword || isLoading" />
+                        <app-error-field-helper [formControlKey]="formGroup.get('username')">
                         </app-error-field-helper>
                     </div>
                 </div>
-                <div class="field" [hidden]="!showPassword">
-                    <label
-                        for="password"
+                <div class="field"
+                    [hidden]="!showPassword">
+                    <label for="password"
                         [ngClass]="{
                             'ng-dirty ng-invalid':
                                 (formGroup.get('password').touched ||
                                     formGroup.get('password').dirty) &&
                                 !formGroup.get('password').valid
-                        }"
-                        >Password</label
-                    >
+                        }">Password</label>
                     <div>
-                        <p-password
-                            id="password"
+                        <p-password id="password"
                             [feedback]="false"
                             [toggleMask]="true"
                             formControlName="password"
@@ -72,29 +59,24 @@
                                     !formGroup.get('password').valid
                             }"
                             placeholder="Input Password"
-                            autocomplete="on"
-                        ></p-password>
-                        <app-error-field-helper
-                            [formControlKey]="formGroup.get('password')"
-                        >
+                            autocomplete="on"></p-password>
+                        <app-error-field-helper [formControlKey]="formGroup.get('password')">
                         </app-error-field-helper>
                     </div>
                 </div>
                 <div class="grid py-2 align-items-center">
                     <div class="col-6">
-                        <p-checkbox
-                            inputId="rememberMe"
+                        <p-checkbox inputId="rememberMe"
                             formControlName="rememberMe"
-                            [binary]="true"
-                        ></p-checkbox>
-                        <label class="ml-2" for="rememberMe">Remember me</label>
+                            [binary]="true"></p-checkbox>
+                        <label class="ml-2"
+                            for="rememberMe">Remember me</label>
                     </div>
-                    <div class="col-6" *ngIf="showPassword">
-                        <span
-                            (click)="switchAccount()"
+                    <div class="col-6"
+                        *ngIf="showPassword">
+                        <span (click)="switchAccount()"
                             class="p-float-label text-right primary-color"
-                            style="cursor: pointer"
-                        >
+                            style="cursor: pointer">
                             Switch Account
                         </span>
                     </div>
@@ -102,20 +84,16 @@
                 <div class="grid">
                     <div class="col-12">
                         <span class="p-float-label mt-2">
-                            <button
-                                pButton
+                            <button pButton
                                 pRipple
                                 label="Login"
-                                [loading]="isLoading"
-                            ></button>
+                                [loading]="isLoading"></button>
                         </span>
                     </div>
                     <div class="col-12">
                         <div class="flex w-full justify-content-end">
-                            <button
-                                class="btn-nude p-float-label primary-color bg-primary-400 cursor-pointer"
-                                (click)="navigateToPage('/forgot-password')"
-                            >
+                            <button class="btn-nude p-float-label primary-color bg-primary-400 cursor-pointer"
+                                (click)="navigateToPage('/forgot-password')">
                                 Forgot Password
                             </button>
                         </div>
@@ -129,10 +107,8 @@
                 </div>
 
                 <div class="flex w-full justify-content-center mt-4">
-                    <button
-                        class="btn-nude p-float-label primary-color cursor-pointer"
-                        (click)="navigateToPage('/privacy-policy')"
-                    >
+                    <button class="btn-nude p-float-label primary-color cursor-pointer"
+                        (click)="navigateToPage('/privacy-policy')">
                         Privacy Policy
                     </button>
                 </div>

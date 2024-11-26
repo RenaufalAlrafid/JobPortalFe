@@ -1,42 +1,21 @@
-import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { AppMainComponent } from './layout/component/app.main.component';
-import { PageNotFoundComponent } from './layout/page-not-found/page-not-found.component';
+import { RouterModule } from '@angular/router';
+import { AuthLayoutComponent } from '@project/layout-project/auth-layout/auth-layout.component';
 import { PageForbiddenComponent } from './layout/page-forbidden/page-forbidden.component';
-import { LoginComponent } from './layout/login/login.component';
-import { AuthGuard } from './core/auth.guard';
-import { DashboardComponent } from './core/dashboard/dashboard.component';
-import { PermisionGuard } from './core/permision.guard';
+import { PageNotFoundComponent } from './layout/page-not-found/page-not-found.component';
 import { RedirectComponent } from './layout/redirect/redirect.component';
-import { ForgotPasswordComponent } from '@layout/forgot-password/forgot-password.component';
-import { PrivacyPoliciesComponent } from '@layout/privacy-policies/privacy-policies.component';
-
-const web: string = localStorage.getItem('web') ?? 'admin';
 
 @NgModule({
     imports: [
         RouterModule.forRoot(
             [
                 {
-                    path: 'dashboard',
-                    component: AppMainComponent,
-                    children: [{ path: '', component: DashboardComponent }],
-                    canActivate: [AuthGuard],
-                },
-                {
-                    path: 'login',
-                    component: LoginComponent,
-                    canActivate: [PermisionGuard],
-                },
-                {
-                    path: 'forgot-password',
-                    component: ForgotPasswordComponent,
-                    canActivate: [PermisionGuard],
-                },
-                {
-                    path: 'privacy-policy',
-                    component: PrivacyPoliciesComponent,
-                    canActivate: [PermisionGuard],
+                    path: 'auth',
+                    component: AuthLayoutComponent,
+                    loadChildren: () =>
+                        import(
+                            '@project/authentication/authentication.module'
+                        ).then((m) => m.AuthenticationModule),
                 },
                 {
                     path: 'redirect',
@@ -49,22 +28,6 @@ const web: string = localStorage.getItem('web') ?? 'admin';
                 {
                     path: '403',
                     component: PageForbiddenComponent,
-                },
-                {
-                    path: 'util',
-                    component: AppMainComponent,
-                    loadChildren: () =>
-                        import('./util/util.module').then((m) => m.UtilModule),
-                    canActivate: [AuthGuard],
-                },
-                {
-                    path: 'showcase',
-                    component: AppMainComponent,
-                    loadChildren: () =>
-                        import('./showcase/showcase.module').then(
-                            (m) => m.ShowcaseModule
-                        ),
-                    // canActivate: [AuthGuard],
                 },
 
                 { path: '**', redirectTo: '404' },
