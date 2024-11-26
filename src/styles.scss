@@ -15,6 +15,9 @@
     scrollbar-width: thin !important;
     scrollbar-color: var(--surface-200) var(--surface-0) !important;
     // font-family: SF Pro Text;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 .fa {
@@ -4160,8 +4163,10 @@ body {
     padding: 0;
 }
 html {
-    padding: 0;
-    margin: 0;
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
 }
 
 h1,

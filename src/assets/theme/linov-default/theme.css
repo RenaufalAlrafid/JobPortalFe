@@ -169,6 +169,10 @@
     --primary-900: #0d3c61;
 }
 
+html {
+    padding: 0;
+    margin: 0;
+}
 
 @font-face {
     font-family: SF Pro Text;

@@ -1,0 +1,129 @@
+<div class="flex flex-column gap-2 mt-2 mb-3 relative">
+    <div class="flex flex-column gap-0">
+        <h1 class="md:text-2xl lg:text-4xl lg:font-bold">
+            Getting Started!
+        </h1>
+        <div class="flex gap-1 align-items-center">
+            <p>Already have an account?</p>
+            <p-button label="Login"
+                styleClass="p-button-link m-0 p-0 w-12"
+                (onClick)="onLogin()"></p-button>
+        </div>
+    </div>
+    <div class="flex flex-column gap-2 w-full"
+        [formGroup]="formReady">
+        <p class="text-lg font-bold">
+            Please enter your details
+        </p>
+        <div class="flex flex-column gap-1">
+            <label htmlFor="username"
+                class="text-lg ">username<span class="text-red">*</span></label>
+            <input pInputText
+                id="username"
+                formControlName="username"
+                class="
+                w-full
+                p-2
+                bg-white
+                border-primary
+                border-round-xl"
+                [ngClass]="{
+                    'ng-dirty ng-invalid' : ( formReady.get('username')?.touched|| formReady.get('username')?.dirty) && !formReady.get('username')?.valid
+                }" />
+            <app-error-field-helper [formControlKey]="formReady.get('username')"></app-error-field-helper>
+        </div>
+        <div class="grid">
+            <div class=" lg:col-6 col-12 flex flex-column gap-1 ">
+                <label htmlFor="password"
+                    class="text-lg">Password<span class="text-red">*</span></label>
+                <p-password [toggleMask]="true"
+                    [feedback]="false"
+                    formControlName="password"
+                    id="password"
+                    [ngClass]="{
+                        'ng-dirty ng-invalid' : ( formReady.get('password')?.touched|| formReady.get('password')?.dirty) && !formReady.get('password')?.valid
+                    }"></p-password>
+                <app-error-field-helper [formControlKey]="formReady.get('password')"></app-error-field-helper>
+            </div>
+            <div class=" lg:col-6 col-12 flex flex-column gap-1 ">
+                <label htmlFor="confirmPassword"
+                    class="text-base md:text-lg">Confirm Password<span class="text-red">*</span></label>
+                <p-password [toggleMask]="true"
+                    [feedback]="false"
+                    formControlName="confirmPassword"
+                    id="confirmPassword"
+                    [ngClass]="{
+                        'ng-dirty ng-invalid' : ( formReady.get('confirmPassword')?.touched|| formReady.get('confirmPassword')?.dirty) && !formReady.get('confirmPassword')?.valid
+                    }"></p-password>
+                <app-error-field-helper [formControlKey]="formReady.get('confirmPassword')"></app-error-field-helper>
+            </div>
+        </div>
+        <div class="flex flex-column gap-1">
+            <label htmlFor="fullName"
+                class="text-lg ">Full Name<span class="text-red">*</span></label>
+            <input pInputText
+                id="fullName"
+                formControlName="fullName"
+                class="w-full p-2 bg-white border-primary border-round-xl"
+                [ngClass]="{
+                    'ng-dirty ng-invalid' : ( formReady.get('fullName')?.touched|| formReady.get('fullName')?.dirty) &&!formReady.get('fullName')?.valid
+                }" />
+            <app-error-field-helper [formControlKey]="formReady.get('fullName')"></app-error-field-helper>
+        </div>
+        <div class="grid">
+            <div class="col-6 flex flex-column gap-1">
+                <label htmlFor="nik"
+                    class="text-lg ">NIK<span class="text-red">*</span></label>
+                <input pInputText
+                    id="nik"
+                    class="w-full p-2 bg-white border-primary border-round-xl"
+                    formControlName="nik"
+                    [ngClass]="{
+                        'ng-dirty ng-invalid' : ( formReady.get('nik')?.touched|| formReady.get('nik')?.dirty) &&!formReady.get('nik')?.valid
+                    }" />
+                <app-error-field-helper [formControlKey]="formReady.get('nik')"></app-error-field-helper>
+            </div>
+            <div class="col-6 flex flex-column gap-1">
+                <label htmlFor="email"
+                    class="text-lg ">Email<span class="text-red">*</span></label>
+                <input pInputText
+                    id="email"
+                    class="w-full p-2 bg-white border-primary border-round-xl"
+                    formControlName="email"
+                    [ngClass]="{
+                        'ng-dirty ng-invalid' : ( formReady.get('email')?.touched|| formReady.get('email')?.dirty) &&!formReady.get('email')?.valid
+                    }" />
+                <app-error-field-helper [formControlKey]="formReady.get('nik')"></app-error-field-helper>
+            </div>
+        </div>
+        <div class="flex flex-column gap-1 w-full">
+            <label for="roleId"> Pick Gender<span class="text-red">*</span></label>
+            <app-lov uri="genders"
+                optLabel="name"
+                label="pick gender "
+                [styleClass]="'border-round-xl p-1 w-full border-primary text-lg'"
+                (selected)="onSelectGender($event)"
+                [ngClass]="{
+                    'ng-dirty ng-invalid' : ( formReady.get('genderId')?.touched|| formReady.get('genderId')?.dirty) &&!formReady.get('genderId')?.valid
+                }"></app-lov>
+            <app-error-field-helper [formControlKey]="formReady.get('genderId')"></app-error-field-helper>
+        </div>
+        <div class="flex flex-column gap-1 w-full">
+            <label for="birthDate"> Your Birth Date<span class="text-red">*</span></label>
+            <p-calendar formControlName="birthDate"
+                dateFormat="yy-mm-dd"></p-calendar>
+            <app-error-field-helper [formControlKey]="formReady.get('birthDate')"></app-error-field-helper>
+        </div>
+        <button pButton
+            pRipple
+            label="
+                register"
+            class="p-button-primart w-full mt-2 border-round-2xl"
+            (click)="onSubmit()"></button>
+
+    </div>
+</div>
+
+
+<!-- [ngClass]="{
+    'ng-dirty ng-invalid' : ( userForm.get('roleId')?.touched|| userForm.get('roleId')?.dirty) && !userForm.get('roleId')?.valid}" -->

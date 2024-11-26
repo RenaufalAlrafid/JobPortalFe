@@ -130,7 +130,7 @@ export class LovComponent implements OnInit, OnChanges, AfterViewInit {
             this.list = [];
             this.loading = true;
 
-            this.srv.get(this.uri).subscribe({
+            this.srv1.get(this.uri).subscribe({
                 next: (res) => {
                     let data = res.data;
 

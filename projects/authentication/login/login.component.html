@@ -16,14 +16,14 @@
         </p>
         <div class="flex flex-column gap-1">
             <label htmlFor="username"
-                class="text-lg ">Username</label>
+                class="text-lg ">Username<span class="text-red">*</span></label>
             <input pInputText
                 id="username"
                 class="w-full bg-white border-primary border-round-2xl" />
         </div>
         <div class="flex flex-column gap-1 ">
             <label htmlFor="username"
-                class="text-lg">Password</label>
+                class="text-lg">Password<span class="text-red">*</span></label>
             <p-password [toggleMask]="true"
                 [feedback]="false"></p-password>
         </div>

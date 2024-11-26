@@ -4,7 +4,7 @@
 
 export const environment = {
     production: false,
-    apiUrl: '',
+    apiUrl: 'http://localhost:8080/api/v1/',
     apiUrlEss: '',
     //   apiUrl:"https://api-uat-krm.linovhr.com/api/v1/",
     loginUrl: '',

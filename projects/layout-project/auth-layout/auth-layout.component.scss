@@ -1,3 +1,7 @@
+html {
+    max-height: 100vh;
+    overflow-y: hidden !important;
+}
 @media screen and (min-width: 1440px) {
     .w-field {
         width: 42rem;

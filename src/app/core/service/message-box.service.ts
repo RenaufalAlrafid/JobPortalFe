@@ -30,7 +30,7 @@ export class MessageBoxService {
         redirect = true,
         path = null
     ) {
-        if(title){
+        if (title) {
             let suc = {
                 title: title,
                 message: message,
@@ -38,7 +38,7 @@ export class MessageBoxService {
                 path: path,
             };
             this.configService.onShowSuccess(suc);
-        }else{
+        } else {
             let suc = {
                 title: 'Success!',
                 message: message,
@@ -69,7 +69,7 @@ export class MessageBoxService {
             summary: title,
             detail: message,
             key: 'info',
-            life: 5000
+            life: 5000,
         });
     }
 

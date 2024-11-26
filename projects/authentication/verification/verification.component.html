@@ -1,0 +1,31 @@
+<div class="flex flex-column gap-4 mt-4">
+    <div class="flex flex-column gap-0">
+        <h1 class="md:text-2xl lg:text-4xl lg:font-bold">
+            Verification Email
+        </h1>
+    </div>
+    <div class="flex flex-column gap-4 w-full">
+        <p class="text-lg font-bold">
+            Please enter OTP verification from your email address
+        </p>
+        <div class="flex flex-column gap-1"
+            [formGroup]="formReady">
+            <label htmlFor="token"
+                class="text-lg ">Token<span class="text-red">*</span></label>
+            <input pInputText
+                id="token"
+                formControlName="otp"
+                class="w-full bg-white border-primary border-round-2xl"
+                [ngClass]="{
+                    'ng-dirty ng-invalid' : ( formReady.get('otp')?.touched|| formReady.get('otp')?.dirty) &&!formReady.get('otp')?.valid
+                }">
+            <app-error-field-helper [formControlKey]="formReady.get('otp')"></app-error-field-helper>
+        </div>
+        <button pButton
+            pRipple
+            label="Verify Email"
+            class="p-button-primart w-full mt-2 border-round-2xl"
+            (click)="onSubmit()"></button>
+
+    </div>
+</div>
