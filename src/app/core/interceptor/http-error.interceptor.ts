@@ -76,15 +76,15 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                             );
                             break;
                         }
-                        case 403: {
-                            this.msg.showInfo(
-                                err.error.data,
-                                `${err.status}: Forbidden`
-                            );
-                            this.auth.destroySession();
-                            this.router.navigate(['login']);
-                            break;
-                        }
+                        // case 403: {
+                        //     this.msg.showInfo(
+                        //         err.error.data,
+                        //         `${err.status}: Forbidden`
+                        //     );
+                        //     this.auth.destroySession();
+                        //     this.router.navigate(['login']);
+                        //     break;
+                        // }
 
                         default:
                             this.msg.showError(

@@ -4183,3 +4183,8 @@ p {
 p {
     font-family: "Poppins", sans-serif !important;
 }
+
+.p-inputtext.ng-dirty.ng-invalid {
+    border: 1px solid red !important;
+    background-color: #ffe6e6 !important;
+}

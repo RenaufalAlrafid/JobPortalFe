@@ -10,7 +10,8 @@
                 (onClick)="onRegister()"></p-button>
         </div>
     </div>
-    <div class="flex flex-column gap-4 w-full">
+    <div class="flex flex-column gap-4 w-full"
+        [formGroup]="formReady">
         <p class="text-lg font-bold">
             Please enter your details
         </p>
@@ -19,18 +20,31 @@
                 class="text-lg ">Username<span class="text-red">*</span></label>
             <input pInputText
                 id="username"
-                class="w-full bg-white border-primary border-round-2xl" />
+                class="w-full bg-white border-primary border-round-2xl"
+                formControlName="username"
+                [ngClass]="{
+                  'ng-dirty': formReady.get('username')?.touched || formReady.get('username')?.dirty,
+                  'ng-invalid': (formReady.get('username')?.touched || formReady.get('username')?.dirty) && !formReady.get('username')?.valid
+                }" />
+
+            <app-error-field-helper [formControlKey]="formReady.get('username')"></app-error-field-helper>
         </div>
         <div class="flex flex-column gap-1 ">
-            <label htmlFor="username"
+            <label htmlFor="password"
                 class="text-lg">Password<span class="text-red">*</span></label>
             <p-password [toggleMask]="true"
-                [feedback]="false"></p-password>
+                [feedback]="false"
+                formControlName="password"
+                [ngClass]="{
+                    'ng-dirty ng-invalid' : ( formReady.get('password')?.touched|| formReady.get('password')?.dirty) &&!formReady.get('password')?.valid
+                }"></p-password>
+            <app-error-field-helper [formControlKey]="formReady.get('password')"></app-error-field-helper>
         </div>
         <button pButton
             pRipple
             label="Login"
-            class="p-button-primart w-full mt-2 border-round-2xl"></button>
+            class="p-button-primart w-full mt-2 border-round-2xl"
+            (click)="onSubmit()"></button>
 
     </div>
 </div>

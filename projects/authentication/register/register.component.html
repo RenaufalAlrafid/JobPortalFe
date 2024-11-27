@@ -93,7 +93,7 @@
                     [ngClass]="{
                         'ng-dirty ng-invalid' : ( formReady.get('email')?.touched|| formReady.get('email')?.dirty) &&!formReady.get('email')?.valid
                     }" />
-                <app-error-field-helper [formControlKey]="formReady.get('nik')"></app-error-field-helper>
+                <app-error-field-helper [formControlKey]="formReady.get('email')"></app-error-field-helper>
             </div>
         </div>
         <div class="flex flex-column gap-1 w-full">
