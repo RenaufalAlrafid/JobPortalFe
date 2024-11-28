@@ -1,0 +1,15 @@
+<div class="flex flex-column pr-6 gap-2">
+    <h3 class="font-bold">User Profile </h3>
+    <div class="grid bg-white profile-container border-round-3xl mt-1">
+        <div class="col-12 md:col-2 border-right-3 border-black-alpha-10 px-3 pt-5">
+            <div *ngFor="let item of sidebarMenus">
+                <app-sidebar-menu-profile [label]="item.label"
+                    [isRoute]="item.isRoute"
+                    [link]="item.link"></app-sidebar-menu-profile>
+            </div>
+        </div>
+        <div class="col-12 md:col-10">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

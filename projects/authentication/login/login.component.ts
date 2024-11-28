@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../service/auth.service';
 import { Login } from '../model/login.model';
 import { MessageBoxService } from '@core/service/message-box.service';
+import { AuthenticationService } from '../../../src/app/core/service/authentication.service';
 
 @Component({
     selector: 'app-login',
@@ -16,11 +17,20 @@ export class LoginComponent {
         private router: Router,
         private authService: AuthService,
         private fb: FormBuilder,
-        private msg: MessageBoxService
+        private msg: MessageBoxService,
+        private authenticationService: AuthenticationService
     ) {}
 
     ngOnInit() {
+        this.checkToken();
         this.createForm();
+    }
+
+    checkToken() {
+        const token = this.authenticationService.getToken();
+        if (token) {
+            this.router.navigateByUrl('/redirect');
+        }
     }
 
     createForm() {

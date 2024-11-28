@@ -1,0 +1,9 @@
+<a [routerLink]="[link]"
+    pButton
+    class="  hover:bg-primary-200 hover:text-white font-bold text-left p-2 flex border-0 p-2 appearance-none w-full my-2"
+    [ngClass]="{
+        'bg-transparent text-black' : !isRoute,
+        'bg-primary-200 text-white': isRoute
+    }">
+    {{ label }}
+</a>

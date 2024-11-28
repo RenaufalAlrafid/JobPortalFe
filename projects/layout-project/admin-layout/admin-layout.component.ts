@@ -19,8 +19,9 @@ export class AdminLayoutComponent {
     getUserData() {
         this.authService.getLogin().subscribe({
             next: (res) => {
+                // console.log(res.data);
                 this.fullName = res.data.fullName;
-                this.photoUrl = res.data.photoUrl;
+                this.photoUrl = res.data.urlPhoto;
             },
             error: (error) => {
                 console.log('Error retrieving user data', error);
