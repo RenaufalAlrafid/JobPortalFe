@@ -3,11 +3,16 @@ import { ApiService } from '../../../src/app/core/service/api.service';
 import { Register } from '../model/register.model';
 import { Verify } from '../model/verify.model';
 import { Login } from '../model/login.model';
+import { AuthenticationService } from '../../../src/app/core/service/authentication.service';
+import { of } from 'rxjs';
 @Injectable({
     providedIn: 'root',
 })
 export class AuthService {
-    constructor(private api: ApiService) {}
+    constructor(
+        private api: ApiService,
+        private authenticationService: AuthenticationService
+    ) {}
 
     register(request: Register) {
         return this.api.post('register', request, true);
@@ -31,5 +36,14 @@ export class AuthService {
 
     logout() {
         localStorage.removeItem('token');
+    }
+
+    getLogin() {
+        const token = this.authenticationService.getToken();
+        if (token) {
+            return this.api.get('users/login', null, true);
+        } else {
+            return of(null);
+        }
     }
 }

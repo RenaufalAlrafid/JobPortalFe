@@ -44,7 +44,7 @@ export class LoginComponent {
                     token = token.data.token;
                     this.msg.showSuccess('Login successful', null, false);
                     this.authService.addToken(token);
-                    this.router.navigateByUrl('/auth/login');
+                    this.router.navigateByUrl('/redirect');
                 },
                 error: (err) => {
                     let error = JSON.parse(err);

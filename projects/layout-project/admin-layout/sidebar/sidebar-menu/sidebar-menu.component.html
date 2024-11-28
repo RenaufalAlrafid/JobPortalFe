@@ -1,0 +1,13 @@
+<a [routerLink]="[link]"
+    class="flex align-items-center gap-2 p-3 text-xl text-white hover:bg-primary-400 border-round transition-all transition-duration-300"
+    [ngClass]="{
+    'justify-content-start': !isCollapsed,
+    'justify-content-center': isCollapsed
+  }">
+    <i [className]="icon"
+        [ngClass]="{
+      'text-2xl': !isCollapsed,
+      'text-3xl': isCollapsed
+    }"></i>
+    <span *ngIf="!isCollapsed">{{ label }}</span>
+</a>

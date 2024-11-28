@@ -4,6 +4,8 @@ import { AuthLayoutComponent } from '@project/layout-project/auth-layout/auth-la
 import { PageForbiddenComponent } from './layout/page-forbidden/page-forbidden.component';
 import { PageNotFoundComponent } from './layout/page-not-found/page-not-found.component';
 import { RedirectComponent } from './layout/redirect/redirect.component';
+import { AdminLayoutComponent } from '@project/layout-project/admin-layout/admin-layout.component';
+import { AuthGuard } from '@core/auth.guard';
 
 @NgModule({
     imports: [
@@ -16,6 +18,20 @@ import { RedirectComponent } from './layout/redirect/redirect.component';
                         import(
                             '@project/authentication/authentication.module'
                         ).then((m) => m.AuthenticationModule),
+                },
+                {
+                    path: 'admin',
+                    component: AdminLayoutComponent,
+                    canActivate: [AuthGuard],
+                    data: { roles: ['SA'] },
+                    loadChildren: () =>
+                        import('@project/admin/admin.module').then(
+                            (m) => m.AdminModule
+                        ),
+                },
+                {
+                    path: 'test/layout',
+                    component: AdminLayoutComponent,
                 },
                 {
                     path: 'redirect',

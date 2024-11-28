@@ -1,0 +1,50 @@
+<div [ngClass]="{
+    'w-18rem': !isCollapsed,
+    'w-8rem': isCollapsed
+  }"
+    class="sidebar flex p-3 flex-column min-h-screen max-h-screen bg-transparent relative transition-all duration-300">
+    <div class="flex-1 sticky bg-primary-500 border-round-3xl px-4 py-4">
+        <div class="flex justify-content-between align-items-center">
+            <img src="/assets/images/logo-no-text.png"
+                alt="logo-sidebar"
+                [ngClass]="{
+          'w-5rem': !isCollapsed,
+          'w-4rem mx-auto p-0': isCollapsed
+        }"
+                class="transition-all duration-300" />
+            <div class="flex flex-column gap-1"
+                [ngClass]="{ 'hidden': isCollapsed }">
+                <p class="text-md text-right font-bold text-white">Job Portal</p>
+                <p class="text-md text-right font-bold text-white">Join Kuy</p>
+            </div>
+        </div>
+        <button pButton
+            (click)="toggleSidebar()"
+            class="w-3rem text-black justify-content-center bg-white rounded-circle border-1 p-2 text-lg text-2xl shadow-4 border-black-alpha-40 transition-all"
+            [ngClass]="{
+    'absolute right-0 mt-3 -mr-4': !isCollapsed,
+    'relative mx-auto mt-0': isCollapsed
+  }">
+            <i [class.fa-caret-left]="!isCollapsed"
+                [class.fa-caret-right]="isCollapsed"
+                class="fa-solid"></i>
+        </button>
+
+        <div class="flex flex-column gap-1  text-white text-center"
+            [ngClass]="{
+        'align-items-center mt-3': isCollapsed,
+        'align-items-start mt-8': !isCollapsed
+      }">
+            <p class="font-semibold text-lg"
+                [ngClass]="{ 'hidden': isCollapsed }">
+                Menu
+            </p>
+            <div class="flex flex-column gap-1 px-2 py-2">
+                <app-sidebar-menu-admin [link]="'/auth/login'"
+                    [label]="'Dashboard'"
+                    [icon]="'fa-solid fa-gauge'"
+                    [isCollapsed]="isCollapsed"></app-sidebar-menu-admin>
+            </div>
+        </div>
+    </div>
+</div>

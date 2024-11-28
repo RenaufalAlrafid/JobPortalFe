@@ -36,7 +36,7 @@ export class ApiService {
             this.header
                 .append(
                     'Authorization',
-                    `Bearer ${this.authService.getSession()?.accessToken}`
+                    `Bearer ${this.authService.getToken()}`
                 )
                 // .append('Accept', 'application/json')
                 .append('Content-Type', 'application/json')

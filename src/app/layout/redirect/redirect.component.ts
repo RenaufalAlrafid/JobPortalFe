@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService } from 'src/app/core/service/api.service';
+import { Router } from '@angular/router';
+import { MessageBoxService } from '@core/service/message-box.service';
+import { AuthService } from '@project/authentication/service/auth.service';
 import { AuthenticationService } from 'src/app/core/service/authentication.service';
-import { environment } from 'src/environments/environment';
-import { firstValueFrom, lastValueFrom } from 'rxjs';
 @Component({
     selector: 'app-redirect',
     templateUrl: './redirect.component.html',
@@ -12,51 +11,46 @@ import { firstValueFrom, lastValueFrom } from 'rxjs';
 export class RedirectComponent implements OnInit {
     token;
     constructor(
-        private srv: ApiService,
-        private aRoute: ActivatedRoute,
         private route: Router,
-        private auth: AuthenticationService
+        private auth: AuthenticationService,
+        private authService: AuthService,
+        private msg: MessageBoxService
     ) {}
 
     ngOnInit(): void {
-        this.aRoute.queryParams.subscribe((queryParams) => {
-            this.token = queryParams['token'];
-            if (this.token) {
-                this.onLoginSSO(this.token);
-            } else {
-                lastValueFrom(this.srv.getSSOToken(true)).then((res) => {
-                    lastValueFrom(
-                        this.srv.postLoginSSO(res.accessToken, true)
-                    ).then((resp) => {
-                        this.onLoginSSO(resp.code);
-                    });
-                });
-            }
-        });
+        this.checkToken();
+        this.getRole();
     }
 
-    onLoginSSO(code) {
-        this.srv.get('open/auth/detail/' + code, null, true).subscribe({
-            next: (resp) => {
-                if (resp) {
-                    let data = JSON.stringify(resp);
-                    this.auth.createSession(data);
-                    this.route.navigate(['/']);
-                } else {
-                    this.isNotValid();
-                }
+    checkToken(): void {
+        const token = this.auth.getToken();
+        if (!token) {
+            this.route.navigateByUrl('/auth/login');
+        }
+    }
+
+    getRole() {
+        this.authService.getLogin().subscribe({
+            next: (res) => {
+                const role = res.data.role;
+                console.log(role);
+                this.redirect(role);
             },
             error: (err) => {
-                this.isNotValid();
+                let error = JSON.parse(err).errors.reason[0];
+                this.msg.showError(error, 'Login Error');
+                this.route.navigateByUrl('/auth/login');
             },
         });
     }
 
-    isNotValid() {
-        if (environment.isSSO) {
-            window.location.href = environment.linovWordpress;
+    redirect(role: string) {
+        if (role === 'SA') {
+            this.route.navigateByUrl('/admin/dashboard');
+        } else if (role === 'user') {
+            this.route.navigateByUrl('/user');
         } else {
-            this.route.navigate(['/login']);
+            this.route.navigateByUrl('/auth/login');
         }
     }
 }
