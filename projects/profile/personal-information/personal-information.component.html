@@ -1,1 +1,235 @@
-<p>personal-information works!</p>
+<div class="flex flex-column gap-2 p-3">
+    <h3>
+        My Profile
+    </h3>
+    <div class="border-round-2xl border-1 border-black-alpha-30 p-4 flex justify-content-between ">
+        <div class="flex gap-4 align-items-center">
+            <div *ngIf="data?.photoUrl">
+                <img src="{{ data?.photoUrl }}"
+                    alt="foto profile"
+                    class="w-6rem h-6rem border-1 border-circle bg-white">
+            </div>
+            <div *ngIf="!data?.photoUrl">
+                <img src="/assets/images/user.png"
+                    alt="foto profile"
+                    class="w-6rem h-6rem border-1 border-circle bg-white">
+            </div>
+
+            <div class="flex flex-column gap-1">
+                <p class="text-lg font-semibold">{{ data?.fullName }}</p>
+                <p class="text-base">{{ data?.username }}</p>
+                <p class="text-base">{{ data?.role }}</p>
+            </div>
+        </div>
+        <btn-edit [label]="'Edit Photo'"
+            (onClick)="onClickEditPhoto()"></btn-edit>
+
+
+    </div>
+    <div class="border-round-2xl border-1 border-black-alpha-30 p-4 flex flex-column justify-content-between">
+        <div class="flex justify-content-between align-items-center w-full">
+            <p class="text-lg font-semibold">
+                Personal Information
+            </p>
+            <btn-edit (onClick)="onClickEditPersonal()"></btn-edit>
+        </div>
+        <div class="flex mt-4 flex-column gap-2">
+            <div class="grid">
+                <div class="col-6  flex flex-column gap-1">
+                    <p class="text-black-alpha-50">
+                        Full Name
+                    </p>
+                    <p class="font-semibold">
+                        {{ data?.fullName }}
+                    </p>
+                </div>
+                <div class="col-6 flex flex-column gap-1">
+                    <p class="text-black-alpha-50">
+                        Gender
+                    </p>
+                    <p class="font-semibold">
+                        {{ data?.gender}}
+                    </p>
+                </div>
+                <div class="col-6  flex flex-column gap-1">
+                    <p class="text-black-alpha-50">
+                        Email
+                    </p>
+                    <p class="font-semibold">
+                        {{ data?.email }}
+                    </p>
+                </div>
+                <div class="col-6 flex flex-column gap-1">
+                    <p class="text-black-alpha-50">
+                        NIK
+                    </p>
+                    <p class="font-semibold">
+                        {{ data?.nik }}
+                    </p>
+                </div>
+                <div class="col-6 flex flex-column gap-1">
+                    <p class="text-black-alpha-50">
+                        Phone Number
+                    </p>
+                    <p class="font-semibold">
+                        {{ data?.phoneNumber }}
+                    </p>
+                </div>
+                <div class="col-6 flex flex-column gap-1">
+                    <p class="text-black-alpha-50">
+                        Date of Birth
+                    </p>
+                    <p class="font-semibold">
+                        {{ data?.birthDate }}
+                    </p>
+                </div>
+                <div class="col-12 flex flex-column gap-1">
+                    <p class="text-black-alpha-50">
+                        City Address
+                    </p>
+                    <p class="font-semibold">
+                        {{ data?.city }}
+                    </p>
+                </div>
+                <div class="col-6 flex flex-column gap-1">
+                    <p class="text-black-alpha-50">
+                        Address
+                    </p>
+                    <p class="font-semibold">
+                        {{ data?.address }}
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+
+</div>
+
+<p-dialog header="Change Photo"
+    [(visible)]="dialogPhotoVisible"
+    [style]="{width: '50vw'}"
+    [modal]="true"
+    [draggable]="false"
+    [resizable]="false">
+    <div class="flex flex-column gap-1"
+        [formGroup]="formPhoto">
+        <app-linov-upload [isImage]="true"
+            [isImagePreview]="true"
+            [editMode]="true"
+            (onChange)="onChangeImage($event)"></app-linov-upload>
+        <app-error-field-helper [formControlKey]="formPhoto.get('file')"></app-error-field-helper>
+        <btn-submit (onClick)="onSubmitPhoto()"></btn-submit>
+    </div>
+</p-dialog>
+
+<p-dialog header="Change Personal Information"
+    *ngIf="formPersonal"
+    [(visible)]="dialogPersonalVisible"
+    [breakpoints]="{ '960px': '100vw' }"
+    [style]="{ width: '50vw'}"
+    [modal]="true"
+    styleClass="custom-rounded-dialog"
+    [contentStyle]="{ 'overflow': 'auto', 'max-height': '100vh' }"
+    [draggable]="false"
+    [resizable]="false">
+    <div class="flex flex-column gap-1 "
+        [formGroup]="formPersonal">
+        <div class="grid p-fluid">
+            <div class="col-12 md:col-6 flex flex-column gap-3 ">
+                <label for="fullName">Full Name</label>
+                <input pInputText
+                    id="fullName"
+                    name="fullName"
+                    formControlName="fullName"
+                    class="border-round-xl py-2 px-3 border-2 bg-white"
+                    [ngClass]="{
+            'ng-dirty ng-invalid' : ( formPersonal.get('fullName')?.touched|| formPersonal.get('fullName')?.dirty) && !formPersonal.get('fullName')?.valid
+                }" />
+                <app-error-field-helper [formControlKey]="formPersonal.get('fullName')"></app-error-field-helper>
+            </div>
+            <div class="col-12 md:col-6 flex flex-column gap-3 ">
+                <label for="email">Email</label>
+                <input pInputText
+                    id="email"
+                    name="email"
+                    formControlName="email"
+                    class="border-round-xl py-2 px-3 border-2 bg-white"
+                    [ngClass]="{
+            'ng-dirty ng-invalid' : ( formPersonal.get('email')?.touched|| formPersonal.get('email')?.dirty) && !formPersonal.get('email')?.valid
+                }" />
+                <app-error-field-helper [formControlKey]="formPersonal.get('email')"></app-error-field-helper>
+            </div>
+            <div class="col-12  flex flex-column gap-3 ">
+                <label for="gender">Gender</label>
+                <app-lov uri="genders"
+                    optLabel="name"
+                    label="Pick Gender"
+                    [styleClass]="'border-round-xl  px-3 text-lg'"
+                    (selected)="onSelectGender($event)"
+                    [value]="formPersonal.value.genderId"
+                    [ngClass]="{
+                            'ng-dirty ng-invalid' : ( formPersonal.get('genderId')?.touched|| formPersonal.get('genderId')?.dirty) && !formPersonal.get('genderId')?.valid}"></app-lov>
+                <app-error-field-helper [formControlKey]="formPersonal.get('genderId')"></app-error-field-helper>
+            </div>
+            <div class="col-12 md:col-6 flex flex-column gap-3 ">
+                <label for="nik">NIK</label>
+                <input pInputText
+                    id="nik"
+                    name="nik"
+                    formControlName="nik"
+                    class="border-round-xl py-2 px-3 border-2 bg-white"
+                    [ngClass]="{
+            'ng-dirty ng-invalid' : ( formPersonal.get('nik')?.touched|| formPersonal.get('nik')?.dirty) && !formPersonal.get('nik')?.valid
+                }" />
+                <app-error-field-helper [formControlKey]="formPersonal.get('nik')"></app-error-field-helper>
+            </div>
+            <div class="col-12 md:col-6 flex flex-column gap-3 ">
+                <label for="phoneNumber">Phone Number</label>
+                <input pInputText
+                    id="phoneNumber"
+                    name="phoneNumber"
+                    formControlName="phoneNumber"
+                    class="border-round-xl py-2 px-3 border-2 bg-white"
+                    value="userForm"
+                    [ngClass]="{
+            'ng-dirty ng-invalid' : ( formPersonal.get('phoneNumber')?.touched|| formPersonal.get('phoneNumber')?.dirty) && !formPersonal.get('phoneNumber')?.valid
+                }" />
+                <app-error-field-helper [formControlKey]="formPersonal.get('phoneNumber')"></app-error-field-helper>
+            </div>
+            <div class="col-12 md:col-6 flex flex-column gap-3 ">
+                <label for="city">City</label>
+                <input pInputText
+                    id="city"
+                    name="city"
+                    formControlName="city"
+                    class="border-round-xl py-2 px-3 border-2 bg-white"
+                    [ngClass]="{
+            'ng-dirty ng-invalid' : ( formPersonal.get('city')?.touched|| formPersonal.get('city')?.dirty) && !formPersonal.get('city')?.valid
+                }" />
+                <app-error-field-helper [formControlKey]="formPersonal.get('city')"></app-error-field-helper>
+            </div>
+            <div class="col-12 md:col-6 flex flex-column gap-3 ">
+                <label for="birthDate">Phone Number</label>
+                <p-calendar formControlName="birthDate"
+                    dateFormat="yy-mm-dd"
+                    dataType="yy-mm-dd"></p-calendar>
+                <app-error-field-helper [formControlKey]="formPersonal.get('birthDate')"></app-error-field-helper>
+            </div>
+            <div class="col-12 md:col-12 flex flex-column gap-3 ">
+                <label for="address">Address</label>
+                <textarea rows="5"
+                    cols="10"
+                    pInputTextarea
+                    class="bg-white"
+                    formControlName="address">{{ formPersonal.value.address }}</textarea>
+                <app-error-field-helper [formControlKey]="formPersonal.get('fullName')"></app-error-field-helper>
+            </div>
+        </div>
+
+        <btn-submit (onClick)="onSubmitPersonal()"></btn-submit>
+    </div>
+</p-dialog>

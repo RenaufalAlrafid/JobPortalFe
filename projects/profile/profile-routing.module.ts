@@ -22,6 +22,11 @@ const routes: Routes = [
         path: 'certification',
         component: CertificationComponent,
     },
+    {
+        path: '',
+        redirectTo: 'personal',
+        pathMatch: 'full',
+    },
 ];
 
 @NgModule({

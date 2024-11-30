@@ -1,0 +1,23 @@
+:host ::ng-deep .p-calendar {
+    width: 100%;
+}
+
+:host ::ng-deep .p-calendar input {
+    font-size: 1rem;
+    background-color: white;
+    color: var(--text-color);
+    border-radius: 0.75rem;
+    appearance: none;
+    outline: none;
+    box-shadow: none;
+    width: 100%;
+    padding: 0.5rem;
+}
+
+:host ::ng-deep .p-calendar input:focus {
+    border-color: var(--primary-color);
+}
+
+.p-dialog-mask {
+    overflow: scroll !important;
+}

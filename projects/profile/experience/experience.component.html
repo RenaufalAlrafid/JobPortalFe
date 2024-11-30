@@ -1,1 +1,173 @@
-<p>experience works!</p>
+<div class="flex flex-column gap-2 p-3">
+    <h3>
+        List Experiences
+    </h3>
+    <div class="flex w-full justify-content-end">
+        <btn-add></btn-add>
+    </div>
+    <app-table [isCompanyMulti]="false"
+        #TableComponent
+        [scrollable]="true"
+        [isSelectable]="true"
+        [isStatus]="false"
+        [columMap]="columnMap"
+        uri="users/experiences"
+        [scrollHeight]="'470px'"
+        [kebabOption]="
+        kebabOption"
+        [isSelectable]="false"
+        (action)="tableAction($event)"></app-table>
+</div>
+
+
+<p-dialog header="Add / Edit Experience"
+    [(visible)]="dialogFormVisible"
+    [breakpoints]="{ '960px': '100vw' }"
+    [style]="{ width: '50vw'}"
+    [modal]="true"
+    styleClass="custom-rounded-dialog"
+    [contentStyle]="{ 'overflow': 'auto', 'height': '80vh' }"
+    [draggable]="false"
+    [resizable]="false">
+    <div class="flex flex-column gap-1 "
+        [formGroup]="formReady">
+        <div class="grid p-fluid">
+            <div class="col-12 md:col-6 flex flex-column gap-3 ">
+                <label for="companyName">Company Name</label>
+                <input pInputText
+                    id="companyName"
+                    name="companyName"
+                    formControlName="companyName"
+                    class="border-round-xl py-2 px-3 border-2 bg-white"
+                    [ngClass]="{
+            'ng-dirty ng-invalid' : ( formReady.get('companyName')?.touched|| formReady.get('companyName')?.dirty) && !formReady.get('companyName')?.valid
+                }" />
+                <app-error-field-helper [formControlKey]="formReady.get('companyName')"></app-error-field-helper>
+            </div>
+            <div class="col-12 md:col-6 flex flex-column gap-3 ">
+                <label for="jobTitle">Job Title</label>
+                <input pInputText
+                    id="jobTitle"
+                    name="jobTitle"
+                    formControlName="jobTitle"
+                    class="border-round-xl py-2 px-3 border-2 bg-white"
+                    [ngClass]="{
+            'ng-dirty ng-invalid' : ( formReady.get('jobTitle')?.touched|| formReady.get('jobTitle')?.dirty) && !formReady.get('jobTitle')?.valid
+                }" />
+                <app-error-field-helper [formControlKey]="formReady.get('jobTitle')"></app-error-field-helper>
+            </div>
+        </div>
+        <div class="grid p-fluid">
+            <div class="col-12 md:col-6 flex flex-column gap-3 ">
+                <label for="startDate">Start Date</label>
+                <p-calendar formControlName="startDate"
+                    dateFormat="yy-mm-dd"
+                    dataType="yy-mm-dd"></p-calendar>
+                <app-error-field-helper [formControlKey]="formReady.get('startDate')"></app-error-field-helper>
+            </div>
+            <div class="col-12 md:col-6 flex flex-column gap-3 ">
+                <label for="endDate">End Date</label>
+                <p-calendar formControlName="endDate"
+                    dateFormat="yy-mm-dd"
+                    dataType="yy-mm-dd"></p-calendar>
+                <app-error-field-helper [formControlKey]="formReady.get('endDate')"></app-error-field-helper>
+            </div>
+        </div>
+        <div class="grid p-fluid">
+            <div class="col-12  flex flex-column gap-3 ">
+                <label for="location">Location</label>
+                <input pInputText
+                    id="location"
+                    name="location"
+                    formControlName="location"
+                    class="border-round-xl py-2 px-3 border-2 bg-white"
+                    [ngClass]="{
+            'ng-dirty ng-invalid' : ( formReady.get('location')?.touched|| formReady.get('location')?.dirty) && !formReady.get('location')?.valid
+                }" />
+                <app-error-field-helper [formControlKey]="formReady.get('location')"></app-error-field-helper>
+            </div>
+            <div class="col-12  flex flex-column gap-3 ">
+                <label for="responsibilities">responsibilities</label>
+                <textarea rows="5"
+                    cols="10"
+                    pInputTextarea
+                    class="bg-white"
+                    formControlName="responsibilities">{{ formReady.value.responsibilities }}</textarea>
+                <app-error-field-helper [formControlKey]="formReady.get('location')"></app-error-field-helper>
+            </div>
+        </div>
+        <div *ngIf="isEdit">
+            <btn-edit></btn-edit>
+        </div>
+        <div *ngIf="!isEdit">
+            <btn-submit></btn-submit>
+        </div>
+
+    </div>
+</p-dialog>
+<p-dialog header="Detail Experience"
+    [(visible)]="
+    dialogDetailVisible"
+    [breakpoints]="{ '960px': '100vw' }"
+    [style]="{ width: '50vw'}"
+    [modal]="true"
+    styleClass="custom-rounded-dialog"
+    [contentStyle]="{ 'overflow': 'auto', 'height': '50vh' }"
+    [draggable]="false"
+    [resizable]="false">
+    <div class="flex flex-column gap-1 ">
+        <div class="grid p-fluid">
+            <div class="col-6 flex flex-column gap-2">
+                <p class="text-lg text-black-alpha-60 font-bold">
+                    Company Name
+                </p>
+                <p class="text-black-alpha-60 ">
+                    {{ experience?.companyName }}
+                </p>
+            </div>
+            <div class="col-6 flex flex-column gap-2">
+                <p class="text-lg text-black-alpha-60 font-bold">
+                    Job Title
+                </p>
+                <p class="text-black-alpha-60 ">
+                    {{ experience?.jobTitle }}
+                </p>
+            </div>
+            <div class="col-6 flex flex-column gap-2">
+                <p class="text-lg text-black-alpha-60 font-bold">
+                    Start Date
+                </p>
+                <p class="text-black-alpha-60 ">
+                    {{ experience?.startDate ? (experience.startDate | date:'mediumDate') : '-' }}
+                </p>
+            </div>
+            <div class="col-6 flex flex-column gap-2">
+                <p class="text-lg text-black-alpha-60 font-bold">
+                    End Date
+                </p>
+                <p class="text-black-alpha-60 ">
+                    {{ experience?.endDate ? (experience.endDate | date:'mediumDate') : '-' }}
+                </p>
+            </div>
+            <div class="col-12 flex flex-column gap-2">
+                <p class="text-lg text-black-alpha-60 font-bold">
+                    Location
+                </p>
+                <p class="text-black-alpha-60 ">
+                    {{ experience?.location }}
+                </p>
+            </div>
+            <div class="col-12 flex flex-column gap-2">
+                <p class="text-lg text-black-alpha-60 font-bold">
+                    Responsibilities
+                </p>
+                <p class="text-black-alpha-60 ">
+                    {{ experience?.responsibilities }}
+                </p>
+            </div>
+
+        </div>
+    </div>
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>

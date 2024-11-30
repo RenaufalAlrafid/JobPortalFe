@@ -582,9 +582,9 @@ input::-webkit-inner-spin-button {
 }
 
 .btn-add {
-    color: var(--topbar-color);
-    background: var(--primary-color) !important;
-    border: 1px solid $primary-red !important;
+    color: white;
+    background: var(--primary-400) !important;
+    border: 1px solid white !important;
     padding: 0.75rem 1.25rem;
     font-size: 14px;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s,
@@ -595,9 +595,9 @@ input::-webkit-inner-spin-button {
     font-weight: 400 !important;
 
     &:hover {
-        background: var(--hover) !important;
+        background: var(--primary-500) !important;
         border: 1px solid var(--hover) !important;
-        color: var(--topbar-color) !important;
+        color: white !important;
     }
 
     &:disabled {
@@ -1085,19 +1085,19 @@ input::-webkit-inner-spin-button {
 }
 
 .btn-edit {
-    color: var(--topbar-color);
-    background-color: var(--primary-color);
-    padding: 0.75rem 1.25rem;
+    color: white;
+    background-color: var(--primary-400);
+    padding: 1rem 1.25rem;
     font-size: 14px;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s,
         box-shadow 0.2s;
     border-radius: 4px;
     height: 35px;
-    width: 128px;
+    width: 116px;
 
     &:hover {
-        background: var(--hover) !important;
-        color: var(--topbar-color) !important;
+        background: var(--primary-600) !important;
+        color: white !important;
     }
 
     &:disabled {
@@ -1426,8 +1426,8 @@ input::-webkit-inner-spin-button {
 }
 
 .btn-submit {
-    color: var(--topbar-color);
-    background-color: var(--primary-color);
+    color: white;
+    background-color: var(--primary-400);
     font-size: 14px;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s,
         box-shadow 0.2s;
@@ -1436,8 +1436,8 @@ input::-webkit-inner-spin-button {
     min-width: 128px;
 
     &:hover {
-        background: var(--hover) !important;
-        color: var(--topbar-color) !important;
+        background: var(--primary-600) !important;
+        color: white !important;
     }
 
     &:disabled {
@@ -4187,4 +4187,9 @@ p {
 .p-inputtext.ng-dirty.ng-invalid {
     border: 1px solid red !important;
     background-color: #ffe6e6 !important;
+}
+
+::ng-deep .p-dialog {
+    border-radius: 5rem;
+    overflow: hidden;
 }

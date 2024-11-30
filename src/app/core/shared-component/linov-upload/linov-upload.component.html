@@ -1,10 +1,10 @@
 <ng-container *ngIf="uploadedFiles.length && !isLoading">
     <ng-container *ngIf="filePreview === 'image' && isImage">
         <ng-container *ngFor="let item of uploadedFiles; let idx = index">
-            <div [class.mb-2]="multiple" class="image-view--wrapper">
+            <div [class.mb-2]="multiple"
+                class="image-view--wrapper">
                 <div class="image-view--card">
-                    <p-image
-                        [src]="
+                    <p-image [src]="
                             multiple
                                 ? sources[idx]
                                     ? sources[idx]
@@ -16,45 +16,41 @@
                         styleClass="wrap-img-view"
                         [class.cursor-pointer]="isImagePreview"
                         imageClass="w-full my-auto wrap-image-view__img-container"
-                        [preview]="isImagePreview"
-                    ></p-image>
+                        [preview]="isImagePreview"></p-image>
                     <div class="image-view--info">
                         <span class="image-name">{{
                             infoFiles[idx].name.length <= 90
-                                ? infoFiles[idx].name
-                                : infoFiles[idx].name.substring(0, 90) + "..."
-                        }}</span>
-                        <span class="image-size">{{
-                            infoFiles[idx].size ? infoFiles[idx].size : "-"
-                        }}</span>
+                                ?
+                                infoFiles[idx].name
+                                :
+                                infoFiles[idx].name.substring(0,
+                                90)
+                                + "..."
+                                }}</span>
+                                <span class="image-size">{{
+                                    infoFiles[idx].size ? infoFiles[idx].size : "-"
+                                    }}</span>
                     </div>
                 </div>
-                <button
-                    *ngIf="showClearButton && !detailMode && !editMode"
+                <button *ngIf="showClearButton && !detailMode && !editMode"
                     pButton
                     pRipple
                     class="btn-delete-icon-only--light"
                     icon="fa-solid fa-trash-can"
-                    (click)="clear(idx)"
-                ></button>
-                <button
-                    *ngIf="showClearButton && !detailMode && editMode"
+                    (click)="clear(idx)"></button>
+                <button *ngIf="showClearButton && !detailMode && editMode"
                     pButton
                     pRipple
                     class="btn-delete-icon-only--light"
                     icon="fa-solid fa-trash-can"
-                    (click)="onDeleteImage(item.id, idx)"
-                ></button>
+                    (click)="onDeleteImage(item.id, idx)"></button>
             </div>
         </ng-container>
     </ng-container>
 
-    <ng-container
-        *ngIf="filePreview === 'excel' || filePreview === 'docs' || !isImage"
-    >
+    <ng-container *ngIf="filePreview === 'excel' || filePreview === 'docs' || !isImage">
         <ng-container *ngFor="let item of uploadedFiles; let idx = index">
-            <div
-                class="file-view--wrapper"
+            <div class="file-view--wrapper"
                 [style]="{
                     gap: inlineUploadIcon ? '12px' : null
                 }"
@@ -62,36 +58,27 @@
                     flex: inlineUploadIcon,
                     'align-items-center': inlineUploadIcon,
                     'jusitfy-content-center': inlineUploadIcon
-                }"
-            >
+                }">
                 <div class="file-view--card">
-                    <div
-                        class="flex align-items-center"
-                        style="gap: 16px; width: 90%"
-                    >
+                    <div class="flex align-items-center"
+                        style="gap: 16px; width: 90%">
                         <i class="fa-solid fa-file-lines icon-docs"></i>
                         <div class="file-view--info">
                             <span class="file-name">{{
                                 infoFiles[idx].name
-                            }}</span>
+                                }}</span>
                         </div>
                     </div>
-                    <i
-                        *ngIf="showClearButton && !detailMode && !editMode"
+                    <i *ngIf="showClearButton && !detailMode && !editMode"
                         class="fa-solid fa-xmark icon-clear"
-                        (click)="clear(idx)"
-                    ></i>
-                    <i
-                        *ngIf="showClearButton && !detailMode && editMode"
+                        (click)="clear(idx)"></i>
+                    <i *ngIf="showClearButton && !detailMode && editMode"
                         class="fa-solid fa-xmark icon-clear"
-                        (click)="onDeleteImage(item.id, idx)"
-                    ></i>
+                        (click)="onDeleteImage(item.id, idx)"></i>
                 </div>
-                <div
-                    *ngIf="inlineUploadIcon"
+                <div *ngIf="inlineUploadIcon"
                     class="inline-upload"
-                    (click)="onClickInlineUploadIcon.emit()"
-                >
+                    (click)="onClickInlineUploadIcon.emit()">
                     <i class="fa-solid fa-cloud-arrow-up"></i>
                 </div>
             </div>
@@ -99,14 +86,14 @@
     </ng-container>
 </ng-container>
 <ng-container *ngIf="!uploadedFiles.length && isLoading">
-    <p-skeleton styleClass="mb-2" height="4rem"></p-skeleton>
+    <p-skeleton styleClass="mb-2"
+        height="4rem"></p-skeleton>
 </ng-container>
 
 <ng-container *ngIf="!detailMode">
     <ng-container *ngIf="!multiple">
         <ng-container *ngIf="!uploadedFiles.length">
-            <input
-                #upload
+            <input #upload
                 id="files"
                 type="file"
                 (change)="onUpload($event)"
@@ -114,31 +101,26 @@
                 [(ngModel)]="file"
                 style="display: none"
                 maxFileSize="1000000"
-                [accept]="allowedFileType.toString()"
-            />
-            <button
-                *ngIf="!isSmall"
+                [accept]="allowedFileType.toString()" />
+            <button *ngIf="!isSmall"
                 class="btn-upload w-full"
                 pButton
                 pRipple
                 label="Browse"
                 icon="fas fa-file-image"
                 [disabled]="disabled"
-                (click)="upload.click()"
-            ></button>
-            <button
-                *ngIf="isSmall"
+                (click)="upload.click()"></button>
+            <button *ngIf="isSmall"
                 class="btn-upload"
                 pButton
                 pRipple
                 icon="fas fa-cloud-upload-alt"
                 [disabled]="disabled"
-                (click)="upload.click()"
-            ></button>
+                (click)="upload.click()"></button>
 
-            <div class="mt-1" *ngIf="!isSmall">
-                <small class="custom-text-small"
-                    >File supported : {{ formatedFileType }} ( Max.
+            <div class="mt-1"
+                *ngIf="!isSmall">
+                <small class="custom-text-small">File supported : {{ formatedFileType }} ( Max.
                     {{ formatedSize }} )
                 </small>
             </div>
@@ -146,8 +128,7 @@
     </ng-container>
 
     <ng-container *ngIf="multiple">
-        <input
-            #upload
+        <input #upload
             id="files"
             type="file"
             (change)="onUpload($event)"
@@ -156,21 +137,17 @@
             style="display: none"
             maxFileSize="1000000"
             [accept]="allowedFileType.toString()"
-            [multiple]="true"
-        />
-        <button
-            class="btn-upload"
+            [multiple]="true" />
+        <button class="btn-upload"
             pButton
             pRipple
             label="Browse"
             icon="fas fa-file-image"
             [disabled]="disabled"
-            (click)="upload.click()"
-        ></button>
+            (click)="upload.click()"></button>
 
         <div class="mt-1">
-            <small class="custom-text-small"
-                >File supported : {{ formatedFileType }} ( Max.
+            <small class="custom-text-small">File supported : {{ formatedFileType }} ( Max.
                 {{ formatedSize }} )
             </small>
         </div>
@@ -181,13 +158,11 @@
     <span *ngIf="!uploadedFiles.length">-</span>
 </ng-container>
 
-<p-confirmDialog
-    [hidden]="!isShowConfirm"
+<p-confirmDialog [hidden]="!isShowConfirm"
     [style]="{ width: '500px' }"
     [breakpoints]="{ '960px': '85vw' }"
     [baseZIndex]="10000"
     [closable]="false"
     [acceptIcon]="false"
     [rejectIcon]="false"
-    class="delete-dialog"
-></p-confirmDialog>
+    class="delete-dialog"></p-confirmDialog>

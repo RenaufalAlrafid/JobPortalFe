@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { filter, Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-profile-layout',
@@ -15,11 +16,15 @@ export class ProfileLayoutComponent {
     ];
 
     sidebarMenus: { label: string; link: string; isRoute: boolean }[] = [];
+    private routerSubscription: Subscription;
 
-    constructor(private aRouter: ActivatedRoute) {}
+    constructor(private aRouter: ActivatedRoute, private router: Router) {}
 
     ngOnInit() {
         this.makeSidebarMenu();
+        this.routerSubscription = this.router.events.subscribe(() => {
+            this.makeSidebarMenu();
+        });
     }
 
     makeSidebarMenu() {

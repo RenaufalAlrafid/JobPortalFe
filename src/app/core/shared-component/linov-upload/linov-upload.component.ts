@@ -28,7 +28,7 @@ export class LinovUploadComponent implements OnInit, OnChanges, OnDestroy {
     @Input() multiple: boolean = false;
     @Input() fileType = 'image';
     @Input() detailMode: boolean = false;
-    @Input() maxFileSize = 1048576;
+    @Input() maxFileSize = 5048576;
     @Input() editMode: boolean = false;
     @Input() isImagePreview = false;
     @Input() allowedFileType;
