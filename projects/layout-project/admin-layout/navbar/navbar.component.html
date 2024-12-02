@@ -67,9 +67,11 @@
     <ng-template pTemplate="content">
         <p class="font-semibold text-lg my-3">Menu</p>
         <div class="flex flex-column gap-1 px-2 py-2">
-            <app-navbar-menu-sidebar [link]="'/auth/login'"
-                [label]="'Dashboard'"
-                [icon]="'fa-solid fa-gauge'"></app-navbar-menu-sidebar>
+            <div *ngFor="let item of sidebar">
+                <app-navbar-menu-sidebar [link]="item.link"
+                    [label]="item.label"
+                    [icon]="item.icon"></app-navbar-menu-sidebar>
+            </div>
         </div>
     </ng-template>
 </p-sidebar>

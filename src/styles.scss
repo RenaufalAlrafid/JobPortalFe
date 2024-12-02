@@ -982,9 +982,9 @@ input::-webkit-inner-spin-button {
     width: 140px !important;
 
     &:hover {
-        background: var(--hover-secondary) !important;
+        background: var(--primary-400) !important;
         border-color: var(--secondary-color) !important;
-        color: var(--secondary-color) !important;
+        color: white !important;
     }
 
     &:disabled {
@@ -2336,8 +2336,8 @@ input::-webkit-inner-spin-button {
 .span-inactive-secondary {
     // background-color: var(--surface-200);
     // color: #9f9f9f;
-    background-color: var(--light-red);
-    color: var(--primary-red);
+    background-color: var(--red-300);
+    color: var(--red-700);
     border-radius: 4px;
     width: 88px;
     height: 24px;

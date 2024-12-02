@@ -16,6 +16,18 @@ const routes: Routes = [
                 (m) => m.ProfileModule
             ),
     },
+    {
+        path: 'user',
+        loadChildren: () =>
+            import('@project/admin/user/user.module').then((m) => m.UserModule),
+    },
+    {
+        path: 'location',
+        loadChildren: () =>
+            import('@project/admin/location/location.module').then(
+                (m) => m.LocationModule
+            ),
+    },
 ];
 
 @NgModule({

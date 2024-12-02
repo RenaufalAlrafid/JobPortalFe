@@ -33,12 +33,12 @@ export class RedirectComponent implements OnInit {
         this.authService.getLogin().subscribe({
             next: (res) => {
                 const role = res.data.role;
-                console.log(role);
                 this.redirect(role);
             },
             error: (err) => {
-                let error = JSON.parse(err).errors.reason[0];
-                this.msg.showError(error, 'Login Error');
+                // console.log(err);
+                this.msg.showError('You Must Login First', 'Login Error');
+                this.authService.logout();
                 this.route.navigateByUrl('/auth/login');
             },
         });

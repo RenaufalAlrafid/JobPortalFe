@@ -20,7 +20,7 @@
         </div>
         <button pButton
             (click)="toggleSidebar()"
-            class="w-3rem text-black justify-content-center bg-white rounded-circle border-1 p-2 text-lg md:text-sm lg:text-2xl shadow-4 border-black-alpha-40 transition-all"
+            class="w-2rem h-2rem lg:w-3rem lg:h-3rem text-black justify-content-center bg-white rounded-circle border-1 p-2 text-lg md:text-sm lg:text-2xl shadow-4 border-black-alpha-40 transition-all"
             [ngClass]="{
     'absolute right-0 mt-3 -mr-4': !isCollapsed,
     'relative mx-auto mt-0': isCollapsed
@@ -40,10 +40,13 @@
                 Menu
             </p>
             <div class="flex flex-column gap-1 px-2 py-2">
-                <app-sidebar-menu-admin [link]="'/auth/login'"
-                    [label]="'Dashboard'"
-                    [icon]="'fa-solid fa-gauge'"
-                    [isCollapsed]="isCollapsed"></app-sidebar-menu-admin>
+                <div *ngFor="let item of sidebar">
+                    <app-sidebar-menu-admin [link]="item.link"
+                        [label]="item.label"
+                        [icon]="item.icon"
+                        [isCollapsed]="isCollapsed"></app-sidebar-menu-admin>
+                </div>
+
             </div>
         </div>
     </div>
