@@ -1339,8 +1339,8 @@ input::-webkit-inner-spin-button {
 }
 
 .btn-update {
-    color: var(--topbar-color);
-    background-color: var(--primary-color);
+    color: white;
+    background-color: var(--primary-300);
     padding: 0.75rem 1.25rem;
     font-size: 14px;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s,
@@ -1350,8 +1350,8 @@ input::-webkit-inner-spin-button {
     width: 128px;
 
     &:hover {
-        background: var(--hover) !important;
-        color: var(--topbar-color) !important;
+        background: var(--primary-500) !important;
+        color: white !important;
     }
 
     &:disabled {

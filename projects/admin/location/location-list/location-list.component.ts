@@ -14,6 +14,7 @@ import { TableComponent } from '@core/shared-component/table/table.component';
 export class LocationListComponent {
     @ViewChild('TableComponent') table: TableComponent;
     dialogEdit: boolean = false;
+    edit: boolean = false;
     title: string = 'Location List';
     items: MenuItem[] = [
         { label: 'Admin' },
@@ -33,16 +34,7 @@ export class LocationListComponent {
         { key: 'name', label: 'Name', disableSort: true },
     ];
 
-    tableAction(e) {
-        const data = e.data;
-        const action = e.action;
-        if (action === 'edit') {
-            this.dialogEdit = true;
-            this.onEdit(data);
-        } else if (action === 'delete') {
-            this.onDeleteDialog(data.id);
-        }
-    }
+    body;
     constructor(
         private router: Router,
         private locationService: LocationService,
@@ -54,7 +46,20 @@ export class LocationListComponent {
     ngOnInit() {
         this.createForm();
     }
+
+    tableAction(e) {
+        const data = e.data;
+        const action = e.action;
+        if (action === 'edit') {
+            this.edit = true;
+            this.dialogEdit = true;
+            this.onEdit(data);
+        } else if (action === 'delete') {
+            this.onDeleteDialog(data.id);
+        }
+    }
     onCreate() {
+        this.edit = false;
         this.dialogEdit = true;
         this.createForm();
     }
@@ -65,7 +70,7 @@ export class LocationListComponent {
             name: ['', Validators.required],
             isActive: [true],
             version: [0],
-            id: ['', Validators.required],
+            id: [''],
         });
     }
 
@@ -86,8 +91,26 @@ export class LocationListComponent {
             const body = this.formReady.getRawValue();
             this.locationService.editLocation(body).subscribe({
                 next: (res) => {
-                    this.msg.showSuccess(res.data, 'Edit Experience', false);
+                    this.msg.showSuccess(res.data, 'Edit Location', false);
                     this.table.reload();
+                    this.dialogEdit = false;
+                },
+                error: (error) => {
+                    console.log(error);
+                },
+            });
+        }
+    }
+    onCreateSubmit() {
+        if (this.formReady.invalid) {
+            this.formReady.markAllAsTouched();
+        } else {
+            const body = this.formReady.getRawValue();
+            this.locationService.addLocation(body).subscribe({
+                next: (res) => {
+                    this.msg.showSuccess(res.data, 'Add Location', false);
+                    this.table.reload();
+                    this.dialogEdit = false;
                 },
                 error: (error) => {
                     console.log(error);
@@ -127,5 +150,10 @@ export class LocationListComponent {
     }
     onSelectRole(e) {
         this.formReady.get('roleId').patchValue(e.id);
+    }
+
+    onSearch(e) {
+        this.body = e;
+        this.table.onSearch(this.body);
     }
 }

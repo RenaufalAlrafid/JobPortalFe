@@ -1,12 +1,15 @@
-<div class="flex flex-column gap-4 p-3 pr-5 max-w-screen">
+<div class="flex flex-column gap-2 py-3 px-5 shadow-3 border-round-2xl max-w-screen bg-white">
     <p-breadcrumb class="max-w-full "
-        [styleClass]="'bg-transparent text-lg m-o p-0'"
+        [styleClass]="'bg-transparent text-sm m-o p-0 border-white'"
         [model]="items" />
-    <div class="flex justify-content-between align-items-center">
-        <h1 class="text-2xl font-bold">
-            {{ title }}
-        </h1>
-
+    <h1 class="text-xl">
+        {{ title }}
+    </h1>
+    <div class="flex flex-column md:flex-row justify-content-between md:align-items-center gap-2">
+        <app-search (search)="onSearch($event)"
+            isFilter="true"
+            [isCompanyMulti]="false"
+            [isFilter]="false"></app-search>
         <btn-add (onClick)="onCreate()"></btn-add>
     </div>
     <app-table [isCompanyMulti]="false"
@@ -23,7 +26,7 @@
         (action)="tableAction($event)"></app-table>
 </div>
 
-<p-dialog header="Add / Edit Experience"
+<p-dialog header="Add / Edit Locations"
     [(visible)]="dialogEdit"
     [breakpoints]="{ '960px': '100vw' }"
     [style]="{ width: '50vw'}"
@@ -59,8 +62,21 @@
                 }" />
                 <app-error-field-helper [formControlKey]="formReady.get('name')"></app-error-field-helper>
             </div>
+            <div class="col-12  flex flex-column gap-3">
+                <label for="isActive">Status<span class="text-red">*</span></label>
+                <div class="flex gap-2">
+                    <p>Inactive</p>
+                    <p-inputSwitch formControlName="isActive" />
+                    <p>Active</p>
+                </div>
+            </div>
         </div>
-        <btn-submit></btn-submit>
+        <div *ngIf="edit">
+            <btn-update (onClick)="onEditSubmit()"></btn-update>
+        </div>
+        <div *ngIf="!edit">
+            <btn-submit (onClick)="onCreateSubmit()"></btn-submit>
+        </div>
     </div>
 
 
