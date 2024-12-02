@@ -14,4 +14,9 @@ export const SIDEBAR_ITEM_ADMIN = [
         label: 'Locations',
         icon: 'fa-solid fa-compass',
     },
+    {
+        link: 'job/list',
+        label: 'Job',
+        icon: 'fa-solid fa-briefcase',
+    },
 ];

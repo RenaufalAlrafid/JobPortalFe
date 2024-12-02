@@ -1,0 +1,133 @@
+<div class="flex flex-column gap-2 py-3 px-5 shadow-3 border-round-2xl max-w-screen bg-white">
+    <p-breadcrumb class="max-w-full "
+        [styleClass]="'bg-transparent text-sm m-o p-0 border-white'"
+        [model]="items" />
+    <h1 class="text-xl">
+        {{ title }}
+    </h1>
+    <div class="grid">
+        <div class="col-6 flex flex-column gap-2">
+            <p class="text-lg font-bold">
+                Code
+            </p>
+            <p>
+                {{ data?.code }}
+            </p>
+        </div>
+        <div class="col-6 flex flex-column gap-2">
+            <p class="text-lg font-bold">
+                Title
+            </p>
+            <p>
+                {{ data?.name }}
+            </p>
+        </div>
+    </div>
+    <div class="flex justify-content-between">
+        <h1 class="text-xl">Specification</h1>
+        <btn-add [label]="'Add Spec'"
+            (onClick)="onAddModalSpec()"></btn-add>
+    </div>
+    <app-table [isCompanyMulti]="false"
+        #TableSpecComponent
+        [scrollable]="true"
+        [isSelectable]="true"
+        [isStatus]="false"
+        [columMap]="columnSpecMap"
+        [uri]="specUrl"
+        [scrollHeight]="'470px'"
+        [kebabOption]="
+        kebabOption"
+        [isSelectable]="false"
+        (action)="tableSpecAction($event)"></app-table>
+    <div class="flex justify-content-between mt-2">
+        <h1 class="text-xl">Description</h1>
+        <btn-add [label]="'Add Desc'"
+            (onClick)="onAddModalDesc()"></btn-add>
+    </div>
+    <app-table [isCompanyMulti]="false"
+        #TableDescComponent
+        [scrollable]="true"
+        [isSelectable]="true"
+        [isStatus]="false"
+        [columMap]="columnDescMap"
+        [uri]="descUrl"
+        [scrollHeight]="'470px'"
+        [kebabOption]="
+        kebabOption"
+        [isSelectable]="false"
+        (action)="tableDescAction($event)"></app-table>
+</div>
+
+<p-dialog header="Add / Edit Specification"
+    [(visible)]="dialogSpecVisible"
+    [breakpoints]="{ '960px': '100vw' }"
+    [style]="{ width: '50vw'}"
+    [modal]="true"
+    styleClass="custom-rounded-dialog"
+    [contentStyle]="{ 'overflow': 'auto', 'height': '50vh' }"
+    [draggable]="false"
+    [resizable]="false">
+    <div class="flex flex-column gap-1 "
+        [formGroup]="formSpecReady">
+        <div class="grid p-fluid">
+            <div class="col-12 flex flex-column gap-3 ">
+                <label for="specification">Specification</label>
+                <input pInputText
+                    id="specification"
+                    name="specification"
+                    formControlName="specification"
+                    class="border-round-xl py-2 px-3 border-2 bg-white"
+                    [ngClass]="{
+            'ng-dirty ng-invalid' : ( formSpecReady.get('specification')?.touched|| formSpecReady.get('specification')?.dirty) && !formSpecReady.get('specification')?.valid
+                }" />
+                <app-error-field-helper [formControlKey]="formSpecReady.get('specification')"></app-error-field-helper>
+            </div>
+        </div>
+        <div *ngIf="edit">
+            <btn-update (onClick)="onEditSpecSubmit()"></btn-update>
+        </div>
+        <div *ngIf="!edit">
+            <btn-submit (onClick)="onCreateSpecSubmit()"></btn-submit>
+        </div>
+    </div>
+
+
+</p-dialog>
+<p-dialog header="Add / Edit Description"
+    [(visible)]="dialogDescVisible"
+    [breakpoints]="{ '960px': '100vw' }"
+    [style]="{ width: '50vw'}"
+    [modal]="true"
+    styleClass="custom-rounded-dialog"
+    [contentStyle]="{ 'overflow': 'auto', 'height': '50vh' }"
+    [draggable]="false"
+    [resizable]="false">
+    <div class="flex flex-column gap-1 "
+        [formGroup]="formDescReady">
+        <div class="grid p-fluid">
+            <div class="col-12 flex flex-column gap-3 ">
+                <label for="description">Description</label>
+                <input pInputText
+                    id="description"
+                    name="description"
+                    formControlName="description"
+                    class="border-round-xl py-2 px-3 border-2 bg-white"
+                    [ngClass]="{
+            'ng-dirty ng-invalid' : ( formSpecReady.get('description')?.touched|| formSpecReady.get('description')?.dirty) && !formSpecReady.get('description')?.valid
+                }" />
+                <app-error-field-helper [formControlKey]="formSpecReady.get('description')"></app-error-field-helper>
+            </div>
+        </div>
+        <div *ngIf="edit">
+            <btn-update (onClick)="onEditDescSubmit()"></btn-update>
+        </div>
+        <div *ngIf="!edit">
+            <btn-submit (onClick)="onCreateDescSubmit()"></btn-submit>
+        </div>
+    </div>
+
+
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>

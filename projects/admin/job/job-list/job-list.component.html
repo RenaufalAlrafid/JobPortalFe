@@ -1,0 +1,85 @@
+<div class="flex flex-column gap-2 py-3 px-5 shadow-3 border-round-2xl max-w-screen bg-white">
+    <p-breadcrumb class="max-w-full "
+        [styleClass]="'bg-transparent text-sm m-o p-0 border-white'"
+        [model]="items" />
+    <h1 class="text-xl">
+        {{ title }}
+    </h1>
+    <div class="flex flex-column md:flex-row justify-content-between md:align-items-center gap-2">
+        <app-search (search)="onSearch($event)"
+            isFilter="true"
+            [isCompanyMulti]="false"
+            [isFilter]="false"></app-search>
+        <btn-add (onClick)="onCreate()"></btn-add>
+    </div>
+    <app-table [isCompanyMulti]="false"
+        #TableComponent
+        [scrollable]="true"
+        [isSelectable]="true"
+        [isStatus]="true"
+        [columMap]="columnMap"
+        uri="jobs"
+        [scrollHeight]="'470px'"
+        [kebabOption]="
+        kebabOption"
+        [isSelectable]="false"
+        (action)="tableAction($event)"></app-table>
+</div>
+
+<p-dialog header="Add / Edit Locations"
+    [(visible)]="dialogEdit"
+    [breakpoints]="{ '960px': '100vw' }"
+    [style]="{ width: '50vw'}"
+    [modal]="true"
+    styleClass="custom-rounded-dialog"
+    [contentStyle]="{ 'overflow': 'auto', 'height': '50vh' }"
+    [draggable]="false"
+    [resizable]="false">
+    <div class="flex flex-column gap-1 "
+        [formGroup]="formReady">
+        <div class="grid p-fluid">
+            <div class="col-12 flex flex-column gap-3 ">
+                <label for="code">Code</label>
+                <input pInputText
+                    id="code"
+                    name="code"
+                    formControlName="code"
+                    class="border-round-xl py-2 px-3 border-2 bg-white"
+                    [ngClass]="{
+            'ng-dirty ng-invalid' : ( formReady.get('code')?.touched|| formReady.get('code')?.dirty) && !formReady.get('code')?.valid
+                }" />
+                <app-error-field-helper [formControlKey]="formReady.get('code')"></app-error-field-helper>
+            </div>
+            <div class="col-12 flex flex-column gap-3 ">
+                <label for="name">Name</label>
+                <input pInputText
+                    id="name"
+                    name="name"
+                    formControlName="name"
+                    class="border-round-xl py-2 px-3 border-2 bg-white"
+                    [ngClass]="{
+            'ng-dirty ng-invalid' : ( formReady.get('name')?.touched|| formReady.get('name')?.dirty) && !formReady.get('name')?.valid
+                }" />
+                <app-error-field-helper [formControlKey]="formReady.get('name')"></app-error-field-helper>
+            </div>
+            <div class="col-12  flex flex-column gap-3">
+                <label for="isActive">Status<span class="text-red">*</span></label>
+                <div class="flex gap-2">
+                    <p>Inactive</p>
+                    <p-inputSwitch formControlName="isActive" />
+                    <p>Active</p>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="edit">
+            <btn-update (onClick)="onEditSubmit()"></btn-update>
+        </div>
+        <div *ngIf="!edit">
+            <btn-submit (onClick)="onCreateSubmit()"></btn-submit>
+        </div>
+    </div>
+
+
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>

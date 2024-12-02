@@ -46,7 +46,7 @@ import { AuthGuard } from '@core/auth.guard';
                     component: PageForbiddenComponent,
                 },
 
-                { path: '**', redirectTo: '404' },
+                // { path: '**', redirectTo: '404' },
             ],
             {
                 scrollPositionRestoration: 'enabled',
