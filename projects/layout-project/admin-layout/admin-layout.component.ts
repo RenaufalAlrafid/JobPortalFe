@@ -9,6 +9,7 @@ import { AuthService } from '@project/authentication/service/auth.service';
 export class AdminLayoutComponent {
     fullName: string = '';
     photoUrl: string = null;
+    isSidebarCollapsed: boolean = false;
 
     constructor(private authService: AuthService) {}
 
@@ -27,5 +28,8 @@ export class AdminLayoutComponent {
                 console.log('Error retrieving user data', error);
             },
         });
+    }
+    onSidebarCollapseChange(isCollapsed: boolean) {
+        this.isSidebarCollapsed = isCollapsed;
     }
 }

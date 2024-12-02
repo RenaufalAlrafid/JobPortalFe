@@ -1,9 +1,11 @@
 <div class="flex surface-200 min-w-screen min-h-screen max-w-screen">
-
     <div class="sticky-sidebar hidden md:block">
-        <app-sidebar-admin></app-sidebar-admin>
+        <app-sidebar-admin (collapseChange)="onSidebarCollapseChange($event)"></app-sidebar-admin>
     </div>
-    <div class="flex flex-column flex-1 lg:px-5 max-w-full">
+    <div class="flex flex-column flex-1 lg:px-5 transition-all duration-300"
+        [ngStyle]="{
+            'max-width': isSidebarCollapsed ? 'calc(100vw - 84px)' : 'calc(100vw - 224px)'
+        }">
         <app-navbar-admin [fullName]="fullName"
             [urlPhoto]="photoUrl"></app-navbar-admin>
         <div class="content-area">

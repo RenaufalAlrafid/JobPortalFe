@@ -1,0 +1,50 @@
+<div class="flex flex-column gap-2 py-3 px-5 shadow-3 border-round-2xl max-w-screen bg-white">
+    <p-breadcrumb class="max-w-full "
+        [styleClass]="'bg-transparent text-sm m-o p-0 border-white'"
+        [model]="items" />
+    <btn-kembali routeUrl="/admin/vacancy/list"></btn-kembali>
+    <h1 class="text-xl">
+        {{ title }}
+    </h1>
+    <div class="grid px-4 py-5 p-fluid">
+        <div class="col-6 flex flex-column gap-3">
+            <p class="text-lg font-bold">Job Title</p>
+            <p>{{ data?.job }}</p>
+        </div>
+        <div class="col-6 flex flex-column gap-3">
+            <p class="text-lg font-bold">Code</p>
+            <p>{{ data?.code }}</p>
+        </div>
+
+        <div class="col-6 flex flex-column gap-3">
+            <p class="text-lg font-bold">Location</p>
+            <p>{{ data?.location }}</p>
+        </div>
+        <div class="col-6 flex flex-column gap-3">
+            <p class="text-lg font-bold">Employment Type</p>
+            <p>{{ data?.type }}</p>
+        </div>
+        <div class="col-6 flex flex-column gap-3">
+            <p class="text-lg font-bold">Experience Level</p>
+            <p>{{ data?.level }}</p>
+        </div>
+        <div class="col-6 flex flex-column gap-3">
+            <p class="text-lg font-bold">Due Date</p>
+            <p>{{ data?.dueDate | date }}</p>
+        </div>
+        <div class="col-6 flex flex-column gap-3">
+            <p class="text-lg font-bold">Salary Start</p>
+            <p>{{ data?.salaryStart }}</p>
+        </div>
+        <div class="col-6 flex flex-column gap-3">
+            <p class="text-lg font-bold">Salary End</p>
+            <p>{{ data?.salaryEnd }}</p>
+        </div>
+        <div class="col-12 flex flex-column gap-3">
+            <p class="text-lg font-bold">Overview</p>
+            <p>{{ data?.overview }}</p>
+        </div>
+
+
+
+    </div>

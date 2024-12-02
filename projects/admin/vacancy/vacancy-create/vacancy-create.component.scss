@@ -1,0 +1,41 @@
+:host ::ng-deep .p-inputnumber {
+    width: 100%;
+}
+
+:host ::ng-deep .p-inputnumber-input {
+    font-size: 1rem;
+    background-color: white;
+    color: var(--text-color);
+    border: 1px solid rgba(0, 0, 0, 0.186);
+    border-radius: 0.75rem;
+    appearance: none;
+    outline: none;
+    box-shadow: none;
+    width: 100%;
+    padding: 0.5rem;
+}
+
+:host ::ng-deep .p-inputnumber-input:focus {
+    border-color: rgba(0, 0, 0, 0.186);
+}
+
+:host ::ng-deep .p-calendar {
+    width: 100%;
+}
+
+:host ::ng-deep .p-calendar input {
+    font-size: 1rem;
+    background-color: white;
+    color: var(--text-color);
+    border: 1px solid rgba(0, 0, 0, 0.186);
+    border-radius: 0.75rem;
+    appearance: none;
+    outline: none;
+    box-shadow: none;
+    width: 100%;
+    padding: 0.5rem;
+}
+
+:host ::ng-deep .p-calendar input:focus {
+    border-color: rgba(0, 0, 0, 0.186);
+}

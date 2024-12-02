@@ -16,7 +16,12 @@ export const SIDEBAR_ITEM_ADMIN = [
     },
     {
         link: 'job/list',
-        label: 'Job',
+        label: 'Jobs',
         icon: 'fa-solid fa-briefcase',
+    },
+    {
+        link: 'vacancy/list',
+        label: 'Vacancies',
+        icon: 'fa-solid fa-suitcase',
     },
 ];

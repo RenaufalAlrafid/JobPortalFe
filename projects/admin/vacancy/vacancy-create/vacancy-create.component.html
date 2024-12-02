@@ -1,0 +1,98 @@
+<div class="flex flex-column gap-2 py-3 px-5 shadow-3 border-round-2xl max-w-screen bg-white">
+    <p-breadcrumb class="max-w-full "
+        [styleClass]="'bg-transparent text-sm m-o p-0 border-white'"
+        [model]="items" />
+    <btn-kembali routeUrl="/admin/vacancy/list"></btn-kembali>
+    <h1 class="text-xl">
+        {{ title }}
+    </h1>
+    <div class="grid px-4 py-5 p-fluid"
+        [formGroup]="formReady">
+        <div class="col-12 lg:col-6 flex flex-column gap-2">
+            <label for="jobId"> Pick Job <span class="text-red">*</span></label>
+            <app-lov uri="jobs/list"
+                optLabel="name"
+                label="Pick Job "
+                [styleClass]="'border-round-xl p-1 w-full border-2 text-lg bg-white'"
+                (selected)="onSelectJob($event)"
+                [ngClass]="{
+                    'ng-dirty ng-invalid' : ( formReady.get('jobId')?.touched|| formReady.get('jobId')?.dirty) &&!formReady.get('jobId')?.valid
+                }"></app-lov>
+            <app-error-field-helper [formControlKey]="formReady.get('jobId')"></app-error-field-helper>
+        </div>
+        <div class="col-12 lg:col-6 flex flex-column gap-2">
+            <label for="typeId"> Pick Employment Type <span class="text-red">*</span></label>
+            <app-lov uri="employment-types"
+                optLabel="name"
+                label="Pick Employment Type"
+                [styleClass]="'border-round-xl p-1 w-full border-2 text-lg bg-white'"
+                (selected)="onSelectType($event)"
+                [ngClass]="{
+                    'ng-dirty ng-invalid' : ( formReady.get('typeId')?.touched|| formReady.get('typeId')?.dirty) &&!formReady.get('typeId')?.valid
+                }"></app-lov>
+            <app-error-field-helper [formControlKey]="formReady.get('typeId')"></app-error-field-helper>
+        </div>
+        <div class="col-12 lg:col-6 flex flex-column gap-2">
+            <label for="locationId"> Pick Location <span class="text-red">*</span></label>
+            <app-lov uri="locations/list"
+                optLabel="name"
+                label="Pick Location"
+                [styleClass]="'border-round-xl p-1 w-full border-2 text-lg bg-white'"
+                (selected)="onSelectLocation($event)"
+                [ngClass]="{
+                    'ng-dirty ng-invalid' : ( formReady.get('locationId')?.touched|| formReady.get('locationId')?.dirty) &&!formReady.get('locationId')?.valid
+                }"></app-lov>
+            <app-error-field-helper [formControlKey]="formReady.get('locationId')"></app-error-field-helper>
+        </div>
+        <div class="col-12 lg:col-6 flex flex-column gap-2">
+            <label for="levelId"> Pick Experience Level <span class="text-red">*</span></label>
+            <app-lov uri="experiences"
+                optLabel="name"
+                label="Pick Experience Level"
+                [styleClass]="'border-round-xl p-1 w-full border-2 text-lg bg-white'"
+                (selected)="onSelectLevel($event)"
+                [ngClass]="{
+                    'ng-dirty ng-invalid' : ( formReady.get('levelId')?.touched|| formReady.get('levelId')?.dirty) &&!formReady.get('levelId')?.valid
+                }"></app-lov>
+            <app-error-field-helper [formControlKey]="formReady.get('levelId')"></app-error-field-helper>
+        </div>
+        <div class="col-12 lg:col-6 flex flex-column gap-2">
+            <label for="levelId"> Salary Start <span class="text-red">*</span></label>
+            <p-inputNumber inputId="withoutgrouping"
+                formControlName="salaryStart"
+                [ngClass]="{
+                        'ng-dirty ng-invalid' : ( formReady.get('salaryStart')?.touched|| formReady.get('salaryStart')?.dirty) && !formReady.get('salaryStart')?.valid}" />
+            <app-error-field-helper [formControlKey]="
+                formReady.get('salaryStart')"></app-error-field-helper>
+        </div>
+        <div class="col-12 lg:col-6 flex flex-column gap-2">
+            <label for="levelId"> Salary End <span class="text-red">*</span></label>
+            <p-inputNumber inputId="withoutgrouping"
+                formControlName="salaryEnd"
+                [ngClass]="{
+                        'ng-dirty ng-invalid' : ( formReady.get('salaryEnd')?.touched|| formReady.get('salaryEnd')?.dirty) && !formReady.get('salaryEnd')?.valid}" />
+            <app-error-field-helper [formControlKey]="
+                formReady.get('salaryEnd')"></app-error-field-helper>
+        </div>
+        <div class="col-12  flex flex-column gap-2">
+            <label for="dueDate"> Due Date<span class="text-red">*</span></label>
+            <p-calendar formControlName="dueDate"
+                dateFormat="yy-mm-dd"></p-calendar>
+            <app-error-field-helper [formControlKey]="formReady.get('dueDate')"></app-error-field-helper>
+        </div>
+        <div class="col-12  flex flex-column gap-2">
+            <div class="col-12  flex flex-column gap-3 ">
+                <label for="overview">overview</label>
+                <textarea rows="5"
+                    cols="10"
+                    pInputTextarea
+                    class="bg-white"
+                    [ngClass]="{
+                        'ng-dirty ng-invalid' : ( formReady.get('overview')?.touched|| formReady.get('overview')?.dirty) && !formReady.get('overview')?.valid}"
+                    formControlName="overview">{{ formReady.value.overview }}</textarea>
+                <app-error-field-helper [formControlKey]="formReady.get('overview')"></app-error-field-helper>
+            </div>
+        </div>
+        <btn-submit (onClick)="onSubmit()"></btn-submit>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="flex flex-column gap-2 py-3 px-5 shadow-3 border-round-2xl max-w-screen bg-white">
+    <p-breadcrumb class="max-w-full "
+        [styleClass]="'bg-transparent text-sm m-o p-0 border-white'"
+        [model]="items" />
+    <h1 class="text-xl">
+        {{ title }}
+    </h1>
+    <div class="flex flex-column md:flex-row justify-content-between md:align-items-center gap-2">
+        <app-search (search)="onSearch($event)"
+            isFilter="true"
+            [isCompanyMulti]="false"
+            [isFilter]="false"></app-search>
+        <btn-add (onClick)="onCreate()"></btn-add>
+    </div>
+    <app-table [isCompanyMulti]="false"
+        #TableComponent
+        [scrollable]="true"
+        [isSelectable]="true"
+        [isStatus]="true"
+        [columMap]="columnMap"
+        uri="vacancies"
+        [scrollHeight]="'470px'"
+        [kebabOption]="
+        kebabOption"
+        [isSelectable]="false"
+        (action)="tableAction($event)"></app-table>
+</div>
+
+
+<p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
