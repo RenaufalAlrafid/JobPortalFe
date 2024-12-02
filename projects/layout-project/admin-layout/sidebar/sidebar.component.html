@@ -2,15 +2,15 @@
     'w-18rem': !isCollapsed,
     'w-8rem': isCollapsed
   }"
-    class="sidebar flex p-3 flex-column min-h-screen max-h-screen bg-transparent relative transition-all duration-300">
-    <div class="flex-1 sticky bg-primary-500 border-round-3xl px-4 py-4">
+    class="sidebar flex p-3 flex-column min-h-screen max-h-screen bg-transparent relative transition-all duration-300 ">
+    <div class="flex-1 bg-primary-500 border-round-3xl px-4 py-4">
         <div class="flex justify-content-between align-items-center">
             <img src="/assets/images/logo-no-text.png"
                 alt="logo-sidebar"
                 [ngClass]="{
-          'w-5rem': !isCollapsed,
-          'w-4rem mx-auto p-0': isCollapsed
-        }"
+            'w-5rem': !isCollapsed,
+            'w-4rem mx-auto p-0': isCollapsed
+          }"
                 class="transition-all duration-300" />
             <div class="flex flex-column gap-1"
                 [ngClass]="{ 'hidden': isCollapsed }">
@@ -22,19 +22,19 @@
             (click)="toggleSidebar()"
             class="w-2rem h-2rem lg:w-3rem lg:h-3rem text-black justify-content-center bg-white rounded-circle border-1 p-2 text-lg md:text-sm lg:text-2xl shadow-4 border-black-alpha-40 transition-all"
             [ngClass]="{
-    'absolute right-0 mt-3 -mr-4': !isCollapsed,
-    'relative mx-auto mt-0': isCollapsed
-  }">
+              'absolute right-0 mt-3 -mr-2': !isCollapsed,
+              'relative mx-auto mt-0': isCollapsed
+            }">
             <i [class.fa-caret-left]="!isCollapsed"
                 [class.fa-caret-right]="isCollapsed"
                 class="fa-solid"></i>
         </button>
 
-        <div class="flex flex-column gap-1  text-white text-center"
+        <div class="flex flex-column gap-1 text-white text-center"
             [ngClass]="{
-        'align-items-center mt-3': isCollapsed,
-        'align-items-start mt-8': !isCollapsed
-      }">
+            'align-items-center mt-3': isCollapsed,
+            'align-items-start mt-8': !isCollapsed
+          }">
             <p class="font-semibold text-lg"
                 [ngClass]="{ 'hidden': isCollapsed }">
                 Menu
@@ -46,7 +46,6 @@
                         [icon]="item.icon"
                         [isCollapsed]="isCollapsed"></app-sidebar-menu-admin>
                 </div>
-
             </div>
         </div>
     </div>

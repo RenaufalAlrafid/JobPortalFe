@@ -1,11 +1,22 @@
 .sidebar {
     transition: all 0.3s ease;
+    position: relative;
+    width: 18rem; /* Adjust width as needed */
+    transition: width 0.3s;
+    background-color: transparent;
+    height: 100vh; /* Ensure it spans the full height */
+    z-index: 10; /* Keep it above the content */
 }
 
 .hidden {
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.sticky-sidebar {
+    position: sticky;
+    top: 0;
+    height: 100vh;
 }
 
 img {

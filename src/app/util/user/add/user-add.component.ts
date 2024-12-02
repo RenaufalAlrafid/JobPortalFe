@@ -16,7 +16,7 @@ export class UserAddComponent implements OnInit {
   password = null;
   rePassword=null;
   touched=false;
-  
+
   constructor(private formBuilder: UntypedFormBuilder,
     private srv: UserService,
     private auth:AuthenticationService,
@@ -28,7 +28,7 @@ export class UserAddComponent implements OnInit {
   ngOnInit(): void {
     this.createForm();
   }
-  
+
 
   createForm(): void {
     this.formControl = this.formBuilder.group({
@@ -63,6 +63,6 @@ export class UserAddComponent implements OnInit {
       employee:e
     })
   }
-  
+
 
 }

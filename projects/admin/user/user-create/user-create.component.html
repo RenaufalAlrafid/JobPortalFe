@@ -1,15 +1,14 @@
-<div class="flex flex-column gap-3 p-3 pr-5 max-w-screen">
-    <p-breadcrumb class="max-w-full "
+<div class="flex flex-column gap-3 p-3 pr-5 max-w-screen bg-white-alpha-90 border-round-3xl shadow-3">
+    <p-breadcrumb class="max-w-full"
         [styleClass]="'bg-transparent text-lg m-o p-0'"
         [model]="items" />
     <btn-kembali routeUrl="/admin/user/list"></btn-kembali>
     <h1 class="text-2xl font-bold">
         {{ title }}
     </h1>
-    <div class="flex flex-column bg-white-alpha-90 p-4 border-round-2xl shadow-3 overflow-y-scroll">
+    <div class="flex flex-column p-4 border-round-2xl ">
         <div class="flex flex-column gap-3 w-full pb-4"
-            [formGroup]="formReady"
-            style="max-height: 60vh;">
+            [formGroup]="formReady">
             <div class="flex flex-column gap-1">
                 <label htmlFor="username"
                     class="text-lg ">username<span class="text-red">*</span></label>
