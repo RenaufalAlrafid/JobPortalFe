@@ -52,7 +52,6 @@ export class VacancyEditComponent {
         this.vacancyService.getVacancyById(this.vacancyId).subscribe({
             next: (res) => {
                 this.formReady.patchValue(res.data);
-                console.log(res.data);
             },
             error: (err) => {
                 console.log(err);

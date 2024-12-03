@@ -105,7 +105,6 @@ export class PersonalInformationComponent {
             this.formPersonal.markAllAsTouched();
         } else {
             const body = this.formPersonal.getRawValue();
-            console.log(body);
             this.profileService.editPersonal(body).subscribe({
                 next: (res) => {
                     this.msg.showSuccess(

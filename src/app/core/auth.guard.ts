@@ -10,7 +10,6 @@ export const AuthGuard: CanActivateFn = (route: ActivatedRouteSnapshot) => {
     const allowedRoles: string[] = route.data['roles'];
 
     if (!authService.getToken()) {
-        // console.log('disini')
         router.navigateByUrl('/redirect');
         return false;
     }

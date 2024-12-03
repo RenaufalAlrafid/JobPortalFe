@@ -9,7 +9,6 @@ import { User } from '../model/user.model';
 export class UserService {
     constructor(private api: ApiService) {}
     createUser(request: Register) {
-        console.log('disini');
         return this.api.post('users', request, true);
     }
 
