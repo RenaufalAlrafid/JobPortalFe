@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MessageBoxService } from '@core/service/message-box.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Verify } from '../model/verify.model';
+import { NgxOtpInputComponentOptions } from 'ngx-otp-input';
 
 @Component({
     selector: 'app-verification',
@@ -21,6 +22,15 @@ export class VerificationComponent {
         private activatedRoute: ActivatedRoute
     ) {}
 
+    otpOptions: NgxOtpInputComponentOptions = {
+        otpLength: 5,
+        autoFocus: true,
+        autoBlur: true,
+        regexp: /^[a-zA-Z0-9]+$/,
+        showBlinkingCursor: true,
+        hideInputValues: false,
+    };
+
     ngOnInit() {
         this.createForm();
     }
@@ -32,22 +42,25 @@ export class VerificationComponent {
         });
     }
 
-    onSubmit() {
-        if (this.formReady.invalid) {
-            this.formReady.markAllAsTouched();
-        } else {
-            const request: Verify = this.formReady.getRawValue();
-            this.authService.verification(request).subscribe({
-                next: (res) => {
-                    this.msg.showSuccess('Verification successful');
-                    this.router.navigateByUrl('/auth/login');
-                },
-                error: (err) => {
-                    let error = JSON.parse(err);
-                    error = error.errors.reason[0];
-                    this.msg.showError(error, 'Register');
-                },
-            });
-        }
+    onSubmit(e: string) {
+        const request: Verify = {
+            email: this.email,
+            otp: e,
+        };
+        this.authService.verification(request).subscribe({
+            next: (res) => {
+                this.msg.showSuccess(
+                    'Verification successful, Please Login',
+                    'verification',
+                    false
+                );
+                this.router.navigateByUrl('/auth/login');
+            },
+            error: (err) => {
+                let error = JSON.parse(err);
+                error = error.errors.reason[0];
+                this.msg.showError(error, 'Verification');
+            },
+        });
     }
 }

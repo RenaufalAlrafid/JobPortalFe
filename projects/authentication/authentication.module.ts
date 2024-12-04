@@ -11,6 +11,7 @@ import { VerificationComponent } from './verification/verification.component';
 import { CalendarModule } from 'primeng/calendar';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { NgxOtpInputComponent } from 'ngx-otp-input';
 @NgModule({
     declarations: [LoginComponent, RegisterComponent, VerificationComponent],
     imports: [
@@ -23,6 +24,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
         CalendarModule,
         ReactiveFormsModule,
         NgxSpinnerModule,
+        NgxOtpInputComponent,
     ],
 })
 export class AuthenticationModule {}
