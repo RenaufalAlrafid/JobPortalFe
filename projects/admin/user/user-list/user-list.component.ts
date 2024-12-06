@@ -31,7 +31,7 @@ export class UserListComponent {
 
     columnMap = [
         { key: 'fullName', label: 'Full Name', disableSort: true },
-        { key: 'email', label: 'Email', disableSort: false },
+        { key: 'email', label: 'Email', disableSort: true },
         { key: 'username', label: 'Username' },
         { key: 'roleName', label: 'RoleName' },
     ];

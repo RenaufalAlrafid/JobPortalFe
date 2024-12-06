@@ -11,26 +11,26 @@ import { DashboardComponent } from '@core/dashboard/dashboard.component';
  */
 
 export const CORE_ROUTES: Routes = [
-    {
-        path: 'dashboard',
-        component: DashboardComponent,
-        canActivate: [AuthGuard],
-    },
+    // {
+    //     path: 'dashboard',
+    //     component: DashboardComponent,
+    //     canActivate: [AuthGuard],
+    // },
 
-    {
-        path: 'log-history',
-        loadChildren: () =>
-            import('./../../util/log-history/log-history.module').then(
-                (m) => m.LogHistoryModule
-            ),
-        canActivate: [AuthGuard],
-    },
-    {
-        path: 'notifications',
-        loadChildren: () =>
-            import('./../../util/notifications/notifications.module').then(
-                (m) => m.NotificationsModule
-            ),
-        canActivate: [AuthGuard],
-    },
+    // {
+    //     path: 'log-history',
+    //     loadChildren: () =>
+    //         import('./../../util/log-history/log-history.module').then(
+    //             (m) => m.LogHistoryModule
+    //         ),
+    //     canActivate: [AuthGuard],
+    // },
+    // {
+    //     path: 'notifications',
+    //     loadChildren: () =>
+    //         import('./../../util/notifications/notifications.module').then(
+    //             (m) => m.NotificationsModule
+    //         ),
+    //     canActivate: [AuthGuard],
+    // },
 ];

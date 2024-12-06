@@ -78,17 +78,17 @@
 
 
 <p-overlayPanel #op>
-    <div class="flex flex-column gap-4">
-        <a class="appearance-none text-black no-underline flex gap-2"
-            [routerLink]="['/admin/profile']">
+    <div class="flex flex-column gap-2">
+        <button pButton class="appearance-none bg-transparent border-0 shadow-none text-black no-underline flex gap-2 m-0 p-2"
+        (click)="onProfile()">
             <i class="fa-solid fa-user"></i>
             <span>User Profile</span>
-        </a>
-        <a class="appearance-none text-black no-underline flex gap-2"
-            [routerLink]="['/auth/login']">
+        </button>
+        <button pButton class="appearance-none bg-transparent border-0 shadow-none text-black no-underline flex gap-2 m-0 p-2"
+            (click)="logOut()">
             <i class="fa-solid fa-right-from-bracket"></i>
             <span>Log Out</span>
-        </a>
+        </button>
 
     </div>
 </p-overlayPanel>
